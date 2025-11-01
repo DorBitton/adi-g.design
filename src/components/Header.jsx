@@ -1,10 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react'
+import gsap from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollToPlugin, ScrollTrigger)
 
 const Header = () => {
     // --- State and Handlers ---
     const [isLoaded, setIsLoaded] = useState(false)
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-    const activeSection = 0 // Mock state
+    const [activeSection, setActiveSection] = useState(0)
 
     // 1. Trigger the fade-in after a short delay (e.g., 50ms)
     useEffect(() => {
@@ -15,12 +20,64 @@ const Header = () => {
         
         return () => clearTimeout(timer)
     }, [])
+
+    // 2. Track active section based on scroll position
+    useEffect(() => {
+        // Wait for content to be ready
+        const initTimer = setTimeout(() => {
+            const sections = [
+                { id: 'hero', index: 0 },
+                { id: 'projects', index: 1 },
+                { id: 'contact', index: 3 }
+            ]
+
+            const triggers = sections.map(section => {
+                const element = document.getElementById(section.id)
+                if (!element) return null
+
+                return ScrollTrigger.create({
+                    trigger: element,
+                    start: 'top center',
+                    end: 'bottom center',
+                    onEnter: () => setActiveSection(section.index),
+                    onEnterBack: () => setActiveSection(section.index),
+                    // Important: tell ScrollTrigger to work with ScrollSmoother
+                    scroller: '#smooth-wrapper'
+                })
+            }).filter(Boolean)
+
+            return () => {
+                triggers.forEach(trigger => trigger.kill())
+            }
+        }, 500)
+
+        return () => clearTimeout(initTimer)
+    }, [])
     
-    // 2. Mock handler for navigation clicks
+    // 3. Handle navigation clicks with smooth scrolling
     const handleNavClick = useCallback((e, href) => {
         e.preventDefault()
-        console.log(`Navigating to ${href}`)
-        // In a real app, you might close the mobile menu here too
+        const targetId = href.replace('#', '')
+        const targetElement = document.getElementById(targetId)
+        
+        if (targetElement) {
+            // Get ScrollSmoother instance and use it to scroll
+            const smoother = ScrollTrigger.getById('smooth-scroller')
+            if (smoother) {
+                smoother.scrollTo(targetElement, true, 'top top')
+            } else {
+                // Fallback to regular GSAP scroll
+                gsap.to(window, {
+                    duration: 1.5,
+                    scrollTo: {
+                        y: targetElement,
+                        offsetY: 0
+                    },
+                    ease: 'power2.inOut'
+                })
+            }
+        }
+
         if (mobileMenuOpen) {
             setMobileMenuOpen(false)
         }
@@ -41,7 +98,10 @@ const Header = () => {
     return (
         <>
             {/* Desktop Header */}
-            <header className={`hidden lg:block fixed top-7 left-0 right-0 z-50 ${transitionClasses}`}>
+            <header 
+                className={`hidden lg:block fixed top-7 left-0 right-0 z-50 ${transitionClasses}`}
+                style={{ position: 'fixed' }}
+            >
                 <div className="max-w-7xl mx-auto px-6 lg:px-8">
                     <div className="flex items-center justify-center h-16">
                         <nav className="bg-[#F7EFE2] rounded-full shadow-lg px-12 py-2">
@@ -73,9 +133,14 @@ const Header = () => {
             </header>
 
             {/* Mobile Header */}
-            <header className={`lg:hidden fixed top-4 left-4 right-4 z-50 ${transitionClasses}`}>
+            <header 
+                className={`lg:hidden fixed top-4 left-4 right-4 z-50 ${transitionClasses}`}
+                style={{ position: 'fixed' }}
+            >
                 <div className="bg-[#F7EFE2] rounded-full shadow-lg px-6 py-3 flex items-center justify-between">
-                    <span className="text-lg font-semibold">Home</span>
+                    <span className="text-lg font-semibold">
+                        {menuItems.find(item => item.section === activeSection)?.label || 'Home'}
+                    </span>
                     <button 
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         className="p-2"

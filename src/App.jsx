@@ -20,22 +20,30 @@ const App = () => {
       content: '#smooth-content',
       smooth: 1.2,
       effects: true,
+      normalizeScroll: true,
+      id: 'smooth-scroller' // Add ID so we can reference it from Header
     })
+    
+    // Ensure ScrollTriggers work properly with ScrollSmoother
+    ScrollTrigger.refresh()
+    
     return () => {
       smoother.kill()
     }
   }, [])
   return (
-    <div id="smooth-wrapper">
-      <div id="smooth-content">
-        <main className="relative min-h-screen w-screen overflow-x-hidden bg-[#F7EFE2]">
-          <Header />
-          <Hero />
-          <Transition />
-          <Projects />
-        </main>
+    <>
+      <Header />
+      <div id="smooth-wrapper">
+        <div id="smooth-content">
+          <main className="relative min-h-screen w-screen overflow-x-hidden bg-[#F7EFE2]">
+            <Hero />
+            <Transition />
+            <Projects />
+          </main>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
