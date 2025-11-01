@@ -172,7 +172,7 @@ const Projects = () => {
         ref={desktopSectionRef}
         className="hidden lg:flex justify-center items-center w-full"
         style={{ 
-          paddingTop: '8vw', 
+          paddingTop: '0vw', 
           paddingBottom: '8vw',
           transform: 'translateZ(0)',
           willChange: 'opacity, transform'
