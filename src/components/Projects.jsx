@@ -182,8 +182,8 @@ const Projects = () => {
           className="bg-[#93472D] box-border"
           style={{ 
             padding: '2vw',
-            width: '90vw',
-            maxWidth: 'min(90vw, 2800px)'
+            width: '93vw',
+            maxWidth: 'min(93vw, 2800px)'
           }}
         >
           {projects.map((project, index) => (

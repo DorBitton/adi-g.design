@@ -218,15 +218,15 @@ const Transition = () => {
   const sectionRef = useRef(null)
   
   const videos = [
-    '/images/transition/arch10.mp4',
-    '/images/transition/arch6.mp4',
-    '/images/transition/arch6.mp4',
-    '/images/transition/arch6.mp4',
-    '/images/transition/arch6.mp4',
-    '/images/transition/arch6.mp4',
-    '/images/transition/arch6.mp4',
-    '/images/transition/arch6.mp4',
-    '/images/transition/arch6.mp4',
+    '/images/transition/videos/arch10.mp4',
+    '/images/transition/videos/arch10.mp4',
+    '/images/transition/videos/arch10.mp4',
+    '/images/transition/videos/arch10.mp4',
+    '/images/transition/videos/arch10.mp4',
+    '/images/transition/videos/arch10.mp4',
+    '/images/transition/videos/arch10.mp4',
+    '/images/transition/videos/arch10.mp4',
+    '/images/transition/videos/arch10.mp4'
   ]
 
   useEffect(() => {
