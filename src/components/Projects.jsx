@@ -92,7 +92,7 @@ const Projects = () => {
       {/* Mobile Layout */}
       <section 
         ref={sectionRef}
-        className="py-12 sm:py-16 md:py-20 lg:hidden flex justify-center items-center px-4 sm:px-6"
+        className="pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 md:pb-20 lg:hidden flex justify-center items-center px-4 sm:px-6"
       >
         <div className="bg-[#93472D] shadow-2xl p-6 sm:p-8 md:p-12 w-full max-w-4xl rounded-lg">
           {projects.map((project) => (
@@ -137,7 +137,7 @@ const Projects = () => {
       <section 
         ref={desktopSectionRef}
         className="hidden lg:flex justify-center items-center"
-        style={{ paddingTop: '0vw', paddingBottom: '8vw' }}
+        style={{ paddingTop: '8vw', paddingBottom: '8vw' }}
       >
         <div 
           className="bg-[#93472D]"
