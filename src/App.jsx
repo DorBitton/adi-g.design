@@ -6,7 +6,7 @@ import { ScrollSmoother } from 'gsap/ScrollSmoother'
 
 import { useLayoutEffect } from 'react'
 import Header from './components/Header';
-import  {Hero, Transition } from './components/Hero';
+import { Hero, Transition } from './components/Hero';
 import Projects from './components/Projects';
 
 import './App.css';

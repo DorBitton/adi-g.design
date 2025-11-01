@@ -7,6 +7,8 @@ gsap.registerPlugin(ScrollTrigger)
 const Hero = () => {
     const [visibleWords, setVisibleWords] = useState({})
     const [showSubtext, setShowSubtext] = useState(false)
+    const heroRef = useRef(null)
+    const contentRef = useRef(null)
     
     const phrases = [
       {
@@ -46,6 +48,7 @@ const Hero = () => {
       }
     ]
   
+    // Word animation effect
     useEffect(() => {
       const startDelay = 700
       const phrasesDelay = 600
@@ -76,12 +79,58 @@ const Hero = () => {
         setShowSubtext(true)
       }, subtextDelay)
     }, [])
+
+    // Hero pin at top and fade out text only
+    useEffect(() => {
+      let pinTrigger;
+      let fadeTrigger;
+      
+      const initTimeout = setTimeout(() => {
+        if (!heroRef.current || !contentRef.current) return
+        
+        // Pin the Hero section at the top
+        pinTrigger = ScrollTrigger.create({
+          trigger: heroRef.current,
+          start: 'top top',
+          end: '+=400vh',
+          pin: true,
+          pinSpacing: false,
+          scroller: '#smooth-wrapper'
+        })
+        
+        // Fade out only the content (text), not the background
+        fadeTrigger = gsap.fromTo(contentRef.current, 
+          {
+            opacity: 1
+          },
+          {
+            opacity: 0,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: heroRef.current,
+              start: 'top top',
+              end: '+=150vh',
+              scrub: 1,
+              scroller: '#smooth-wrapper'
+            }
+          }
+        )
+      }, 500)
+
+      return () => {
+        clearTimeout(initTimeout)
+        if (pinTrigger) pinTrigger.kill()
+        if (fadeTrigger) fadeTrigger.kill()
+      }
+    }, [])
   
     return (
       <section 
+        ref={heroRef}
         id="hero" 
-        className="min-h-[80vh] bg-[#9E8E74] flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-24"
+        className="relative z-0 min-h-screen bg-[#9E8E74] flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-24"
       >
+        <div ref={contentRef}>
         <div className="max-w-6xl mx-auto w-full text-center mb-6 sm:mb-8">
           <h1 
             className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-tight"
@@ -209,6 +258,7 @@ const Hero = () => {
             a combination that shaped how I understand space, structure, and the way people interact with their environment.
           </p>
         </div>
+        </div>
       </section>
     )
   }
@@ -260,7 +310,7 @@ const Transition = () => {
           paused: true,
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 40%',
+            start: 'top 10%',
             end: 'bottom 30%',
             toggleActions: 'play none none reverse',
             scroller: '#smooth-wrapper'
@@ -334,7 +384,7 @@ const Transition = () => {
 <section 
   ref={sectionRef}
   id="Transition" 
-  className="min-h-screen lg:hidden px-4 sm:px-6 py-12 sm:py-20 bg-[#F7EFE2] flex items-center justify-center"
+  className="relative z-10 min-h-screen lg:hidden px-4 sm:px-6 py-12 sm:py-20 bg-[#F7EFE2] flex items-center justify-center"
 >
   <div className="transition-mobile space-y-16 max-w-2xl mx-auto opacity-0">
     {/* Titles */}
@@ -401,7 +451,7 @@ const Transition = () => {
       {/* Desktop Layout */}
       <section 
         id="Transition" 
-        className="min-h-[60vh] px-6 py-20 relative hidden lg:block bg-[#F7EFE2]"
+        className="relative z-10 min-h-[60vh] px-6 py-20 hidden lg:block bg-[#F7EFE2]"
       >
         <div className="max-w-7xl mx-auto h-full flex items-center">
           
