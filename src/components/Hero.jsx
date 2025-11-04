@@ -366,7 +366,7 @@ const Transition = () => {
   }, [])
 
   const SkillCard = ({ avatar, header, text }) => (
-    <div className="flex-shrink-0 w-64 bg-white rounded-xl shadow-lg p-6 mx-4 hover:shadow-2xl transition-shadow duration-300">
+    <div className="flex-shrink-0 w-64 bg-white rounded-xl shadow-lg p-6 mx-4 hover:shadow-2xl transition-shadow duration-300 border-2 border-[#9E8E74]">
       {/* Avatar/Image on top */}
       <div className="flex justify-center mb-4">
         <div className="text-5xl">{avatar}</div>
