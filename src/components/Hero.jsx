@@ -264,63 +264,47 @@ const Hero = () => {
   }
   
 const Transition = () => {
-  const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef(null)
+  const topRowRef = useRef(null)
+  const bottomRowRef = useRef(null)
   
-  const videos = [
-    '/images/transition/videos/arch10.mp4',
-    '/images/transition/videos/arch10.mp4',
-    '/images/transition/videos/arch10.mp4',
-    '/images/transition/videos/arch10.mp4',
-    '/images/transition/videos/arch10.mp4',
-    '/images/transition/videos/arch10.mp4',
-    '/images/transition/videos/arch10.mp4',
-    '/images/transition/videos/arch10.mp4',
-    '/images/transition/videos/arch10.mp4'
+  // Sample card data - you can customize this
+  const cardData = [
+    { id: 1, avatar: '👨‍💻', header: 'User Research', text: 'Understanding user needs through interviews and testing' },
+    { id: 2, avatar: '🎨', header: 'Visual Design', text: 'Creating beautiful and functional interfaces' },
+    { id: 3, avatar: '📐', header: 'Wireframing', text: 'Sketching layouts and user flows' },
+    { id: 4, avatar: '🔍', header: 'Usability Testing', text: 'Validating designs with real users' },
+    { id: 5, avatar: '💡', header: 'Ideation', text: 'Brainstorming creative solutions' },
+    { id: 6, avatar: '📊', header: 'Data Analysis', text: 'Making informed design decisions' },
+    { id: 7, avatar: '🤝', header: 'Collaboration', text: 'Working with cross-functional teams' },
+    { id: 8, avatar: '🎯', header: 'Strategy', text: 'Aligning design with business goals' },
+    { id: 9, avatar: '🚀', header: 'Prototyping', text: 'Building interactive mockups' },
+    { id: 10, avatar: '✨', header: 'Innovation', text: 'Pushing boundaries of design' },
+    { id: 11, avatar: '📱', header: 'Mobile First', text: 'Designing for all screen sizes' },
+    { id: 12, avatar: '🏗️', header: 'Architecture', text: 'Structuring space and experience' },
+    { id: 13, avatar: '🎭', header: 'Personas', text: 'Creating user archetypes' },
+    { id: 14, avatar: '🔧', header: 'Tools', text: 'Mastering design software' },
+    { id: 15, avatar: '🌟', header: 'Excellence', text: 'Striving for quality in every detail' },
+    { id: 16, avatar: '🎪', header: 'Experience', text: 'Crafting memorable interactions' },
+    { id: 17, avatar: '📝', header: 'Documentation', text: 'Clear design specifications' },
+    { id: 18, avatar: '🎓', header: 'Learning', text: 'Continuous growth and development' },
+    { id: 19, avatar: '🌈', header: 'Accessibility', text: 'Design for everyone' },
+    { id: 20, avatar: '⚡', header: 'Performance', text: 'Fast and efficient solutions' }
   ]
 
   useEffect(() => {
-    // Variables to hold the GSAP instances for cleanup
-    let mobileTween;
     let tl;
+    let marqueeTop;
+    let marqueeBottom;
     let initTimeout;
     
-    // Wait a bit for ScrollSmoother to be ready
     initTimeout = setTimeout(() => {
       // Set initial state
-      gsap.set('.transition-mobile', { opacity: 0, y: 30 })
-      gsap.set('.transition-videos-left', { opacity: 0, x: -50 })
-      gsap.set('.transition-titles', { opacity: 0, x: 50 })
-      gsap.set('.transition-icons-container', { opacity: 0 })
-      gsap.set('.transition-icons', { opacity: 0, y: 30 })
-      gsap.set('.transition-text-container', { opacity: 0 })
-      gsap.set('.transition-text-right', { opacity: 0, x: 50 })
+      gsap.set('.transition-titles', { opacity: 0, y: 0 })
+      gsap.set('.transition-marquee', { opacity: 0 })
 
-      // Mobile layout fade in
-      mobileTween = gsap.fromTo('.transition-mobile',
-        {
-          opacity: 0,
-          y: 30
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: 'power2.out',
-          paused: true,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 10%',
-            end: 'bottom 30%',
-            toggleActions: 'play none none reverse',
-            scroller: '#smooth-wrapper'
-          }
-        }
-      )
-
-      // Desktop layout animations
+      // Fade in animation
       tl = gsap.timeline({
-        paused: true,
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 70%',
@@ -330,242 +314,124 @@ const Transition = () => {
         }
       })
 
-      tl.fromTo('.transition-videos-left',
-        { opacity: 0, x: -50 },
-        { opacity: 1, x: 0, duration: 1, ease: 'power2.out' }
-      )
-      .fromTo('.transition-titles',
-        { opacity: 0, x: 50 },
-        { opacity: 1, x: 0, duration: 1, ease: 'power2.out' },
-        '-=0.7'
-      )
-      .fromTo('.transition-icons-container',
-        { opacity: 0 },
-        { opacity: 1, duration: 0.5, ease: 'power2.out' },
-        '-=0.5'
-      )
-      .fromTo('.transition-icons',
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: 'power2.out' },
-        '-=0.3'
-      )
-      .fromTo('.transition-text-container',
-        { opacity: 0 },
-        { opacity: 1, duration: 0.5, ease: 'power2.out' },
-        '-=0.6'
-      )
-      .fromTo('.transition-text-right',
-        { opacity: 0, x: 50 },
-        { opacity: 1, x: 0, duration: 0.8, stagger: 0.15, ease: 'power2.out' },
-        '-=0.4'
-      )
+      tl.to('.transition-titles', {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power2.out'
+      })
+      .to('.transition-marquee', {
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power2.out'
+      }, '-=0.5')
+
+      // Infinite marquee animations (slower speed)
+      if (topRowRef.current) {
+        const topRowWidth = topRowRef.current.scrollWidth / 2
+        marqueeTop = gsap.to('.marquee-top', {
+          x: -topRowWidth,
+          duration: 80,
+          ease: 'none',
+          repeat: -1
+        })
+      }
+
+      if (bottomRowRef.current) {
+        const bottomRowWidth = bottomRowRef.current.scrollWidth / 2
+        marqueeBottom = gsap.fromTo('.marquee-bottom',
+          { x: -bottomRowWidth },
+          {
+            x: 0,
+            duration: 80,
+            ease: 'none',
+            repeat: -1
+          }
+        )
+      }
     }, 500)
 
     return () => {
-      // Clear the timeout if component unmounts before initialization
-      if (initTimeout) clearTimeout(initTimeout);
+      if (initTimeout) clearTimeout(initTimeout)
+      if (tl) tl.kill()
+      if (marqueeTop) marqueeTop.kill()
+      if (marqueeBottom) marqueeBottom.kill()
       
-      // 🧹 IMPORTANT: Explicitly kill the timeline and tween
-      if (mobileTween) mobileTween.kill();
-      if (tl) tl.kill();
-      
-      // Kill any ScrollTriggers specifically tied to this section's ref
       ScrollTrigger.getAll().forEach(trigger => {
         if (trigger.trigger === sectionRef.current) {
-            trigger.kill();
+          trigger.kill()
         }
-      });
+      })
     }
   }, [])
 
+  const SkillCard = ({ avatar, header, text }) => (
+    <div className="flex-shrink-0 w-52 bg-white rounded-xl shadow-lg p-5 mx-3 hover:shadow-2xl transition-shadow duration-300">
+      <div className="flex items-center mb-3">
+        <div className="text-3xl mr-3">{avatar}</div>
+        <h3 className="text-lg font-bold text-[#9E8E74] font-lato">{header}</h3>
+      </div>
+      <p className="text-sm text-gray-600 font-lato-light leading-relaxed">{text}</p>
+    </div>
+  )
+
   return (
-    <>
-      {/* Mobile Layout */}
-<section 
-  ref={sectionRef}
-  id="Transition" 
-  className="relative z-10 min-h-screen lg:hidden px-4 sm:px-6 py-12 sm:py-20 bg-[#F7EFE2] flex items-center justify-center"
->
-  <div className="transition-mobile space-y-16 max-w-2xl mx-auto opacity-0">
-    {/* Titles */}
-    <div className="text-center space-y-3">
-      <h2 className="transition-titles text-5xl sm:text-6xl md:text-7xl font-extrabold text-[#F7EFE2] font-lato" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>
-        UX Designer
-      </h2>
-      <h2 className="transition-titles text-5xl sm:text-6xl md:text-7xl font-extrabold text-[#9E8E74] font-lato">
-        Architect
-      </h2>
-    </div>
-
-    {/* Skills - No video grid */}
-    <div className="space-y-12">
-      <div className="text-center">
-        <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 flex items-center justify-center">
-          <img 
-            src="/images/transition/small_icons/1.png" 
-            alt="Design process icon" 
-            className="w-full h-full object-contain"
-          />
-        </div>
-        <h3 className="text-2xl sm:text-3xl md:text-4xl font-lato-regular font-bold text-[#9E8E74] mb-4">
-          Design process
-        </h3>
-        <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-lato-light leading-relaxed max-w-lg mx-auto">
-          research, ideation, and refinement, focused on user needs and context.
-        </p>
-      </div>
-      <div className="text-center">
-        <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 flex items-center justify-center">
-          <img 
-            src="/images/transition/small_icons/2.png" 
-            alt="Teamwork icon" 
-            className="w-full h-full object-contain"
-          />
-        </div>
-        <h3 className="text-2xl sm:text-3xl md:text-4xl font-lato-regular font-bold text-[#9E8E74] mb-4">
-          Work in multi-disciplinary teams
-        </h3>
-        <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-lato-light leading-relaxed max-w-lg mx-auto">
-          Teamwork across diverse expertise. Collaboration between designers, engineers, and other professionals.
-        </p>
-      </div>
-      <div className="text-center">
-        <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 flex items-center justify-center">
-          <img 
-            src="/images/transition/small_icons/3.png" 
-            alt="Client communication icon" 
-            className="w-full h-full object-contain"
-          />
-        </div>
-        <h3 className="text-2xl sm:text-3xl md:text-4xl font-lato-regular font-bold text-[#9E8E74] mb-4">
-          Deal with clients and stakeholders
-        </h3>
-        <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-lato-light leading-relaxed max-w-lg mx-auto">
-          Clear communication and feedback integration. Translating goals and constraints into effective solutions.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-      {/* Desktop Layout */}
-      <section 
-        id="Transition" 
-        className="relative z-10 min-h-[60vh] px-6 py-20 hidden lg:block bg-[#F7EFE2]"
-      >
-        <div className="max-w-7xl mx-auto h-full flex items-center">
-          
-          {/* Left side - 3 columns with 3 videos each */}
-          <div className="transition-videos-left absolute left-[4.17%] flex w-1/3 mt-[15%] opacity-0"
-          style={{ gap: '1.5vw' }}>
-            {/* Column 1 */}
-            <div className="flex flex-col w-1/3" style={{ gap: '1vw' }}>
-              {[0, 1, 2].map(i => (
-                <div key={i} className="rounded-lg overflow-hidden" style={{ width: '10vw', height: '10vw' }}>
-                  <video 
-                    src={videos[i]} 
-                    alt={`Video ${i + 1}`} 
-                    className="w-full h-full object-cover" 
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline
-                  />
-                </div>
-              ))}
-            </div>
-            
-            {/* Column 2 */}
-            <div className="flex flex-col w-1/3" style={{ gap: '1vw' }}>
-              {[3, 4, 5].map(i => (
-                <div key={i} className="rounded-lg overflow-hidden" style={{ width: '10vw', height: '10vw' }}>
-                  <video 
-                    src={videos[i]} 
-                    alt={`Video ${i + 1}`} 
-                    className="w-full h-full object-cover" 
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline
-                  />
-                </div>
-              ))}
-            </div>
-            
-            {/* Column 3 */}
-            <div className="flex flex-col w-1/3" style={{ gap: '1vw' }}>
-              {[6, 7, 8].map(i => (
-                <div key={i} className="rounded-lg overflow-hidden" style={{ width: '10vw', height: '10vw' }}>
-                  <video 
-                    src={videos[i]} 
-                    alt={`Video ${i + 1}`} 
-                    className="w-full h-full object-cover" 
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Middle - 3 small icons */}
-          <div className="transition-icons-container absolute top-[12%] right-[35%] flex flex-col w-1/3 justify-center items-center opacity-0"
-          style={{ gap: '7vw' }}>
-            {[1, 2, 3].map(i => (
-              <div key={i} className="transition-icons flex items-center justify-center" style={{ width: '3vw', height: '3vw' }}>
-                <img 
-                  src={`/images/transition/small_icons/${i}.png`}
-                  alt="Icon" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Right side - Titles */}
-          <div 
+    <section 
+      ref={sectionRef}
+      id="Transition" 
+      className="relative z-10 min-h-screen bg-[#F7EFE2] py-20"
+    >
+      {/* Centered Titles */}
+      <div 
             className="transition-titles absolute opacity-0"
             style={{ 
-              top: '-3.4vw',
-              right: '22vw'
+              top: '-4vw',
+              right: '35vw'
             }}
           >
             <div style={{ marginBottom: '-2.1vw' }}>
-              <h2 className="text-[#F7EFE2] font-lato-bold font-bold" style={{ fontSize: '2.8vw' }}>
+              <h2 className="text-[#F7EFE2] font-lato-bold font-bold" style={{ fontSize: '3.3vw' }}>
                 UX Designer
               </h2>
             </div>
-            <div className="text-center" style={{ marginLeft: '10.8vw' }}>
-              <h2 className="text-[#9E8E74] font-lato-bold font-bold" style={{ fontSize: '2.8vw' }}>
+            <div className="text-center" style={{ marginTop: '-2.4vw', marginLeft: '12.7vw' }}>
+              <h2 className="text-[#9E8E74] font-lato-bold font-bold" style={{ fontSize: '3.3vw' }}>
                 Architect
               </h2>
             </div>
           </div>
 
-          {/* Right side - Text descriptions */}
-          <div className="transition-text-container absolute top-[10%] right-[15%] w-1/3 flex flex-col items-center opacity-0"
-          style={{ gap: '4vw' }}>
-            {[
-              { title: 'Design process', text: 'research, ideation, and refinement, focused on user needs and context.' },
-              { title: 'Work in multi-disciplinary teams', text: 'Teamwork across diverse expertise. Collaboration between designers, engineers, and other professionals.' },
-              { title: 'Deal with clients and stakeholders', text: 'Clear communication and feedback integration. Translating goals and constraints into effective solutions.' }
-            ].map((item, i) => (
-              <div key={i} className="transition-text-right text-center">
-                <h2 className="font-bold text-[#9E8E74] mb-4" style={{ fontSize: '1.4vw' }}>
-                  {item.title}
-                </h2>
-                <p className="text-gray-600 leading-relaxed" style={{ fontSize: '0.9vw' }}>
-                  {item.text}
-                </p>
-              </div>
+      {/* Marquee Cards Container */}
+      <div className="transition-marquee opacity-0 space-y-8">
+        {/* Top Row - Scrolling Left */}
+        <div className="relative overflow-hidden">
+          <div ref={topRowRef} className="flex marquee-top">
+            {/* First set of cards */}
+            {cardData.slice(0, 10).map(card => (
+              <SkillCard key={`top-1-${card.id}`} {...card} />
+            ))}
+            {/* Duplicate set for seamless loop */}
+            {cardData.slice(0, 10).map(card => (
+              <SkillCard key={`top-2-${card.id}`} {...card} />
             ))}
           </div>
-
         </div>
-      </section>
-    </>
+
+        {/* Bottom Row - Scrolling Right */}
+        <div className="relative overflow-hidden">
+          <div ref={bottomRowRef} className="flex marquee-bottom">
+            {/* First set of cards */}
+            {cardData.slice(10, 20).map(card => (
+              <SkillCard key={`bottom-1-${card.id}`} {...card} />
+            ))}
+            {/* Duplicate set for seamless loop */}
+            {cardData.slice(10, 20).map(card => (
+              <SkillCard key={`bottom-2-${card.id}`} {...card} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   )
 }
 
