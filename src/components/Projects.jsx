@@ -2,20 +2,32 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
+import ImageSlider from './ImageSlider'
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 
 const Projects = () => {  
   const sectionRef = useRef(null)
   const desktopSectionRef = useRef(null)
-  const cardRef = useRef(null)
 
   const projects = [
     {
       id: 1,
       title: 'Cinema Application',
       description: 'A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.',
-      video: '/videos/1.webm'
+      images: [
+        '/images/projects/cinema.png',
+        '/images/projects/cinema.png',
+        '/images/projects/cinema.png',
+        '/images/projects/cinema.png',
+        '/images/projects/cinema.png',
+        '/images/projects/cinema.png',
+        '/images/projects/cinema.png',
+        '/images/projects/cinema.png',
+        '/images/projects/cinema.png',
+        '/images/projects/cinema.png',
+        '/images/projects/cinema.png'
+      ]
     }
   ]
 
@@ -107,22 +119,6 @@ const Projects = () => {
     }
   }, [])
 
-  const handleMouseEnter = (e) => {
-    gsap.to(e.currentTarget, {
-      scale: 1.05,
-      duration: 0.4,
-      ease: 'power2.out'
-    })
-  }
-
-  const handleMouseLeave = (e) => {
-    gsap.to(e.currentTarget, {
-      scale: 1,
-      duration: 0.4,
-      ease: 'power2.out'
-    })
-  }
-
   return (
     <div id="projects" className="w-full overflow-x-hidden bg-card">
       {/* Mobile Layout */}
@@ -150,22 +146,13 @@ const Projects = () => {
                 </p>
               </div>
 
-              {/* Project Video */}
+              {/* Project Image Slider */}
               <div className="relative flex justify-center items-center">
                 <div 
-                  className="w-1/2 rounded-2xl overflow-hidden cursor-pointer"
-                  onClick={() => window.open(`/project/${project.id}`, '_blank')}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
+                  className="w-1/2 rounded-2xl overflow-hidden"
+                  style={{ aspectRatio: '16/9' }}
                 >
-                  <video 
-                    src={project.video} 
-                    className="w-full h-auto object-contain"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
+                  <ImageSlider images={project.images} />
                 </div>
               </div>
             </div>
@@ -235,25 +222,15 @@ const Projects = () => {
                 </p>
               </div>
 
-              {/* Project Video */}
+              {/* Project Image Slider */}
               <div className={`relative h-full flex justify-center items-center box-border ${
                 index % 2 === 1 ? 'lg:order-1' : ''
               }`}>
                 <div 
-                  className="rounded-xl overflow-hidden cursor-pointer box-border"
+                  className="rounded-xl overflow-hidden box-border"
                   style={{ width: '50%', height: '50%' }}
-                  onClick={() => window.open(`/project/${project.id}`, '_blank')}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
                 >
-                  <video 
-                    src={project.video} 
-                    className="w-full h-full object-contain"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
+                  <ImageSlider images={project.images} />
                 </div>
               </div>
             </div>
