@@ -16,17 +16,17 @@ const Projects = () => {
       title: 'Cinema Application',
       description: 'A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.',
       images: [
-        '/images/projects/cinema.png',
-        '/images/projects/cinema.png',
-        '/images/projects/cinema.png',
-        '/images/projects/cinema.png',
-        '/images/projects/cinema.png',
-        '/images/projects/cinema.png',
-        '/images/projects/cinema.png',
-        '/images/projects/cinema.png',
-        '/images/projects/cinema.png',
-        '/images/projects/cinema.png',
-        '/images/projects/cinema.png'
+        '/images/projects/1.png',
+        '/images/projects/2.png',
+        '/images/projects/3.png',
+        '/images/projects/4.png',
+        '/images/projects/5.png',
+        '/images/projects/6.png',
+        '/images/projects/7.png',
+        '/images/projects/8.png',
+        '/images/projects/9.png',
+        '/images/projects/10.png',
+        '/images/projects/11.png'
       ]
     }
   ]
