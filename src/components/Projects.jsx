@@ -75,7 +75,7 @@ const Projects = () => {
         className="h-auto lg:h-[85vh]"
 
       >
-        <div className="grid grid-cols-1 gap-8 h-auto lg:h-[80vh] lg:w-[70vw] mx-auto">
+        <div className="grid grid-cols-1 gap-8 h-auto lg:h-[80vh] lg:w-[75vw] mx-auto">
           {projects.map((project) => (
             <div
               key={project.id}
@@ -86,10 +86,10 @@ const Projects = () => {
               <div className="relative overflow-hidden rounded-[2rem] border border-neutral-700 bg-gradient-to-br from-[#252525] to-[#101010] p-10 lg:p-14 transition-all duration-500 hover:border-neutral-500 h-full">
                 {/* Glare effects */}
                 <div className="pointer-events-none absolute inset-0 z-0">
-                  {/* Background radial glow */}
-                  <div className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100 bg-[radial-gradient(circle_at_50%_0,#7fcfff33,#0000_80%),radial-gradient(circle_at_50%_0,#035,#0000)]" />
-                  {/* Top glare line */}
-                  <div className="absolute top-0 h-px w-full bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-20" />
+                  {/* Background radial glow - Pink theme */}
+                  <div className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-60 bg-[radial-gradient(circle_at_50%_0,#ff558833,#0000_80%),radial-gradient(circle_at_50%_0,#5c0a2a,#0000)]" />
+                  {/* Top glare line - Pink tint */}
+                  <div className="absolute top-0 h-px w-full bg-gradient-to-r from-transparent via-pink-500/40 to-transparent opacity-20" />
                 </div>
 
                 {/* Arrow Button */}
