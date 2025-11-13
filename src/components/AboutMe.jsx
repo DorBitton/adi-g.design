@@ -49,7 +49,7 @@ const AboutMe = () => {
       className="relative w-full min-h-[50vh] bg-card py-20 mt-[-40vh]"
     >
       {/* Top Brown Header Bar */}
-      <div
+      <div id="about"
         ref={headerBarRef}
         className="h-[1.5%] min-h-[2px] bg-foreground opacity-30 w-full"
       />

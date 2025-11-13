@@ -278,7 +278,7 @@ const Transition = () => {
     { id: 6, avatar: '📊', header: 'Data Analysis', text: 'Making informed design decisions' },
     { id: 7, avatar: '🤝', header: 'Collaboration', text: 'Working with cross-functional teams' },
     { id: 8, avatar: '🎯', header: 'Strategy', text: 'Aligning design with business goals' },
-    { id: 9, avatar: 'gif', gifSrc: '/images/cards/Rocket.gif', header: 'Prototyping', text: 'Building interactive mockups' },
+    { id: 9, avatar: 'gif', gifSrc: '/images/cards/Rocket2.gif', header: 'Prototyping', text: 'Building interactive mockups' },
     { id: 10, avatar: '✨', header: 'Innovation', text: 'Pushing boundaries of design' },
     { id: 11, avatar: '📱', header: 'Mobile First', text: 'Designing for all screen sizes' },
     { id: 12, avatar: '🏗️', header: 'Architecture', text: 'Structuring space and experience' },
@@ -366,7 +366,7 @@ const Transition = () => {
 
   const SkillCard = ({ avatar, gifSrc, header, text }) => (
     <div 
-      className="skill-card flex-shrink-0 w-64 backdrop-blur-2xl border-2 border-border shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-shadow transition-all duration-300 bg-card/5"
+      className="skill-card flex-shrink-0 w-64 backdrop-blur-2xl border-2 border-border shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-shadow transition-all duration-300 bg-card/5 "
     >
       {/* Avatar/Image on top */}
       <div className="flex justify-center mb-4">
@@ -405,38 +405,9 @@ const Transition = () => {
       id="Transition" 
       className="relative z-10 pt-40 pb-50 bg-card"
     >
-      {/* Centered Titles */}
-      <div 
-            className="transition-titles absolute opacity-0"
-            style={{ 
-              top: '-4vw',
-              right: '36vw'
-            }}
-          >
-            <div style={{ marginBottom: '-2.1vw' }}>
-              <h2 
-                className="font-lato-bold text-primary" 
-                style={{ 
-                  fontSize: '3.3vw'
-                }}
-              >
-                UX Designer
-              </h2>
-            </div>
-            <div className="text-center" style={{ marginTop: '-2.4vw', marginLeft: '12.1vw' }}>
-              <h2 
-                className="font-lato-bold text-white" 
-                style={{ 
-                  fontSize: '3.3vw'
-                }}
-              >
-                Architect
-              </h2>
-            </div>
-          </div>
 
       {/* Marquee Cards Container */}
-      <div className="transition-marquee opacity-0 space-y-20 max-w-[1800px] mx-auto">
+      <div className="transition-marquee opacity-0 space-y-20 max-w-[1800px] mx-auto mt-24">
         {/* Top Row - Scrolling Left */}
         <div className="scroller" data-direction="left" data-speed="slow">
           <div className="scroller__inner">

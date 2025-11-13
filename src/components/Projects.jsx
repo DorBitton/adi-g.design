@@ -92,6 +92,34 @@ const Projects = () => {
                   <div className="absolute top-0 h-px w-full bg-gradient-to-r from-transparent via-pink-500/40 to-transparent opacity-20" />
                 </div>
 
+                {/* Content */}
+                <div className="relative z-10 flex flex-col items-center justify-center h-full text-center space-y-6">
+                  {/* Text Content */}
+                  <div className="space-y-4">
+                    <p className="text-sm lg:text-base text-neutral-400 uppercase tracking-wider">
+                      Featured Project
+                    </p>
+                    <h2 className="text-2xl lg:text-4xl font-bold text-neutral-100">
+                      Cinema Application
+                    </h2>
+                    <p className="text-sm lg:text-base text-neutral-300 max-w-2xl mx-auto leading-relaxed">
+                      A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.
+                    </p>
+                  </div>
+
+                  {/* Images in a line */}
+                  <div className="flex flex-row gap-4 w-full max-w-4xl mt-8 justify-center items-center">
+                    {[1, 2, 3, 4].map((index) => (
+                      <img
+                        key={index}
+                        src={`/images/projects/CinemaApp/${index}.png`}
+                        alt={`Cinema App screenshot ${index}`}
+                        className="flex-1 max-w-full h-auto rounded-lg object-contain"
+                      />
+                    ))}
+                  </div>
+                </div>
+
                 {/* Arrow Button */}
                 <div className="absolute right-6 top-6 flex h-12 w-12 lg:h-14 lg:w-14 items-center justify-center rounded-full border border-neutral-600 bg-neutral-800/50 backdrop-blur-sm transition-all duration-500 hover:bg-neutral-700 z-20">
                   <ArrowUpRight className="w-6 h-6 lg:w-7 lg:h-7 text-neutral-200" />

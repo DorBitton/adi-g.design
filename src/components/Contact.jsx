@@ -34,7 +34,7 @@ const Contact = () => {
       ref={containerRef}
       className="relative w-full min-h-[60vh] bg-background flex items-center justify-center py-20 md:py-32"
     >
-      <div className="max-w-6xl mx-auto px-6 sm:px-8 md:px-12">
+      <div id="contact" className="max-w-6xl mx-auto px-6 sm:px-8 md:px-12">
         <div ref={textRef} className="space-y-4 md:space-y-6">
           <h2 className="contact-line text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-casta text-[#F5F0E7] leading-tight">
             Let's create
