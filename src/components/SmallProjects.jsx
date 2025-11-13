@@ -103,7 +103,7 @@ const SmallProjects = () => {
       ref={containerRef}
       className="relative w-full min-h-screen py-32 px-4 sm:px-6 md:px-8 bg-card"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[100rem] mx-auto">
         <div className="cards-container relative">
           {projects.map((project, i) => {
             // Alternate layout: even index (0, 2) = image left, odd index (1) = image right
