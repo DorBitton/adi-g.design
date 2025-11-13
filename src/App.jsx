@@ -6,8 +6,11 @@ import { ScrollSmoother } from 'gsap/ScrollSmoother'
 
 import { useLayoutEffect } from 'react'
 import Header from './components/Header';
-import  {Hero, Transition } from './components/Hero';
+import { Hero, Transition } from './components/Hero';
 import Projects from './components/Projects';
+import SmallProjects from './components/SmallProjects';
+import AboutMe from './components/AboutMe';
+import Contact from './components/Contact';
 
 import './App.css';
 
@@ -24,6 +27,7 @@ const App = () => {
       id: 'smooth-scroller' // Add ID so we can reference it from Header
     })
     
+    
     // Ensure ScrollTriggers work properly with ScrollSmoother
     ScrollTrigger.refresh()
     
@@ -36,10 +40,13 @@ const App = () => {
       <Header />
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          <main className="relative min-h-screen w-screen overflow-x-hidden bg-[#F7EFE2]">
+          <main className="relative min-h-screen w-screen overflow-x-hidden bg-background">
             <Hero />
             <Transition />
             <Projects />
+            <SmallProjects />
+            <AboutMe />
+            <Contact />
           </main>
         </div>
       </div>

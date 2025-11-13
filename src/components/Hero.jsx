@@ -7,6 +7,8 @@ gsap.registerPlugin(ScrollTrigger)
 const Hero = () => {
     const [visibleWords, setVisibleWords] = useState({})
     const [showSubtext, setShowSubtext] = useState(false)
+    const heroRef = useRef(null)
+    const contentRef = useRef(null)
     
     const phrases = [
       {
@@ -46,6 +48,7 @@ const Hero = () => {
       }
     ]
   
+    // Word animation effect
     useEffect(() => {
       const startDelay = 700
       const phrasesDelay = 600
@@ -76,19 +79,65 @@ const Hero = () => {
         setShowSubtext(true)
       }, subtextDelay)
     }, [])
+
+    // Hero pin at top and fade out text only
+    useEffect(() => {
+      let pinTrigger;
+      let fadeTrigger;
+      
+      const initTimeout = setTimeout(() => {
+        if (!heroRef.current || !contentRef.current) return
+        
+        // Pin the Hero section at the top
+        pinTrigger = ScrollTrigger.create({
+          trigger: heroRef.current,
+          start: 'top top',
+          end: '+=400vh',
+          pin: true,
+          pinSpacing: false,
+          scroller: '#smooth-wrapper'
+        })
+        
+        // Fade out only the content (text), not the background
+        fadeTrigger = gsap.fromTo(contentRef.current, 
+          {
+            opacity: 1
+          },
+          {
+            opacity: 0,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: heroRef.current,
+              start: 'top top',
+              end: '+=150vh',
+              scrub: 1,
+              scroller: '#smooth-wrapper'
+            }
+          }
+        )
+      }, 500)
+
+      return () => {
+        clearTimeout(initTimeout)
+        if (pinTrigger) pinTrigger.kill()
+        if (fadeTrigger) fadeTrigger.kill()
+      }
+    }, [])
   
     return (
       <section 
+        ref={heroRef}
         id="hero" 
-        className="min-h-[80vh] bg-[#9E8E74] flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-24"
+        className="relative z-0 min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 py-16 sm:py-24 bg-black"
       >
+        <div ref={contentRef}>
         <div className="max-w-6xl mx-auto w-full text-center mb-6 sm:mb-8">
           <h1 
             className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-tight"
             style={{fontFamily: 'Casta, serif'}}
           >
             <span 
-              className={`text-black transition-all duration-300 ${
+              className={`transition-all duration-300 text-foreground ${
                 visibleWords['0-0'] ? 'opacity-100' : 'opacity-0'
               }`}
             >
@@ -96,21 +145,21 @@ const Hero = () => {
             </span>
             
             <span 
-              className={`italic text-[#F7EFE2] transition-all duration-300 ${
+              className={`italic transition-all duration-300 text-pink-500 ${
                 visibleWords['1-0'] ? 'opacity-100' : 'opacity-0'
               }`}
             >
               I'm{' '}
             </span>
             <span 
-              className={`italic text-[#F7EFE2] transition-all duration-300 ${
+              className={`italic transition-all duration-300 text-pink-500 ${
                 visibleWords['1-1'] ? 'opacity-100' : 'opacity-0'
               }`}
             >
               Adi
             </span>
             <span 
-              className={`text-black transition-all duration-300 ${
+              className={`transition-all duration-300 text-foreground ${
                 visibleWords['1-2'] ? 'opacity-100' : 'opacity-0'
               }`}
             >
@@ -119,28 +168,28 @@ const Hero = () => {
             <br />
             
             <span 
-              className={`text-black transition-all duration-300 ${
+              className={`transition-all duration-300 text-foreground ${
                 visibleWords['2-0'] ? 'opacity-100' : 'opacity-0'
               }`}
             >
               I{' '}
             </span>
             <span 
-              className={`text-black transition-all duration-300 ${
+              className={`transition-all duration-300 text-foreground ${
                 visibleWords['2-1'] ? 'opacity-100' : 'opacity-0'
               }`}
             >
               used{' '}
             </span>
             <span 
-              className={`text-black transition-all duration-300 ${
+              className={`transition-all duration-300 text-foreground ${
                 visibleWords['2-2'] ? 'opacity-100' : 'opacity-0'
               }`}
             >
               to{' '}
             </span>
             <span 
-              className={`text-black transition-all duration-300 ${
+              className={`transition-all duration-300 text-foreground ${
                 visibleWords['2-3'] ? 'opacity-100' : 'opacity-0'
               }`}
             >
@@ -149,14 +198,14 @@ const Hero = () => {
             <br />
             
             <span 
-              className={`italic text-[#F7EFE2] transition-all duration-300 ${
+              className={`italic transition-all duration-300 text-pink-500 ${
                 visibleWords['2-4'] ? 'opacity-100' : 'opacity-0'
               }`}
             >
               Buildings
             </span>
             <span 
-              className={`text-black transition-all duration-300 ${
+              className={`transition-all duration-300 text-foreground ${
                 visibleWords['2-5'] ? 'opacity-100' : 'opacity-0'
               }`}
             >
@@ -164,21 +213,21 @@ const Hero = () => {
             </span>
             
             <span 
-              className={`text-black transition-all duration-300 ${
+              className={`transition-all duration-300 text-foreground ${
                 visibleWords['3-0'] ? 'opacity-100' : 'opacity-0'
               }`}
             >
               Now{' '}
             </span>
             <span 
-              className={`text-black transition-all duration-300 ${
+              className={`transition-all duration-300 text-foreground ${
                 visibleWords['3-1'] ? 'opacity-100' : 'opacity-0'
               }`}
             >
               I{' '}
             </span>
             <span 
-              className={`text-black transition-all duration-300 ${
+              className={`transition-all duration-300 text-foreground ${
                 visibleWords['3-2'] ? 'opacity-100' : 'opacity-0'
               }`}
             >
@@ -186,14 +235,14 @@ const Hero = () => {
             </span>
             
             <span 
-              className={`italic text-[#F7EFE2] transition-all duration-300 ${
+              className={`italic transition-all duration-300 text-pink-500 ${
                 visibleWords['3-3'] ? 'opacity-100' : 'opacity-0'
               }`}
             >
               Experiences
             </span>
             <span 
-              className={`text-black transition-all duration-300 ${
+              className={`transition-all duration-300 text-foreground ${
                 visibleWords['3-4'] ? 'opacity-100' : 'opacity-0'
               }`}
             >
@@ -202,75 +251,58 @@ const Hero = () => {
           </h1>
         </div>
         
-        <div className="max-w-4xl mx-auto w-full text-center px-4">
-          <p className={`text-[#F7EFE2] text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed transition-all duration-1000 ${
-            showSubtext ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}>
+        <div className="max-w-4xl mx-auto w-full text-center px-4 ">
+          <p 
+            className={`font-lato-light text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed transition-all duration-1000 text-white ${
+              showSubtext ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+          >
             a combination that shaped how I understand space, structure, and the way people interact with their environment.
           </p>
+        </div>
         </div>
       </section>
     )
   }
   
 const Transition = () => {
-  const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef(null)
   
-  const videos = [
-    '/images/transition/videos/arch10.mp4',
-    '/images/transition/videos/arch10.mp4',
-    '/images/transition/videos/arch10.mp4',
-    '/images/transition/videos/arch10.mp4',
-    '/images/transition/videos/arch10.mp4',
-    '/images/transition/videos/arch10.mp4',
-    '/images/transition/videos/arch10.mp4',
-    '/images/transition/videos/arch10.mp4',
-    '/images/transition/videos/arch10.mp4'
+  // Sample card data - you can customize this
+  const cardData = [
+    { id: 1, avatar: '👨‍💻', header: 'User Research', text: 'Understanding user needs through interviews and testing' },
+    { id: 2, avatar: '🎨', header: 'Visual Design', text: 'Creating beautiful and functional interfaces' },
+    { id: 3, avatar: '📝', header: 'Wireframing', text: 'Sketching layouts and user flows' },
+    { id: 4, avatar: '🔍', header: 'Usability Testing', text: 'Validating designs with real users' },
+    { id: 5, avatar: '💡', header: 'Ideation', text: 'Brainstorming creative solutions' },
+    { id: 6, avatar: '📊', header: 'Data Analysis', text: 'Making informed design decisions' },
+    { id: 7, avatar: '🤝', header: 'Collaboration', text: 'Working with cross-functional teams' },
+    { id: 8, avatar: '🎯', header: 'Strategy', text: 'Aligning design with business goals' },
+    { id: 9, avatar: 'gif', gifSrc: '/images/cards/Rocket2.gif', header: 'Prototyping', text: 'Building interactive mockups' },
+    { id: 10, avatar: '✨', header: 'Innovation', text: 'Pushing boundaries of design' },
+    { id: 11, avatar: '📱', header: 'Mobile First', text: 'Designing for all screen sizes' },
+    { id: 12, avatar: '🏗️', header: 'Architecture', text: 'Structuring space and experience' },
+    { id: 13, avatar: '🎭', header: 'Personas', text: 'Creating user archetypes' },
+    { id: 14, avatar: '🔧', header: 'Tools', text: 'Mastering design software' },
+    { id: 15, avatar: '🌟', header: 'Excellence', text: 'Striving for quality in every detail' },
+    { id: 16, avatar: '🎪', header: 'Experience', text: 'Crafting memorable interactions' },
+    { id: 17, avatar: '📋', header: 'Documentation', text: 'Clear design specifications' },
+    { id: 18, avatar: '🎓', header: 'Learning', text: 'Continuous growth and development' },
+    { id: 19, avatar: '🌈', header: 'Accessibility', text: 'Design for everyone' },
+    { id: 20, avatar: '⚡', header: 'Performance', text: 'Fast and efficient solutions' }
   ]
 
   useEffect(() => {
-    // Variables to hold the GSAP instances for cleanup
-    let mobileTween;
     let tl;
     let initTimeout;
     
-    // Wait a bit for ScrollSmoother to be ready
     initTimeout = setTimeout(() => {
       // Set initial state
-      gsap.set('.transition-mobile', { opacity: 0, y: 30 })
-      gsap.set('.transition-videos-left', { opacity: 0, x: -50 })
-      gsap.set('.transition-titles', { opacity: 0, x: 50 })
-      gsap.set('.transition-icons-container', { opacity: 0 })
-      gsap.set('.transition-icons', { opacity: 0, y: 30 })
-      gsap.set('.transition-text-container', { opacity: 0 })
-      gsap.set('.transition-text-right', { opacity: 0, x: 50 })
+      gsap.set('.transition-titles', { opacity: 0, y: 0 })
+      gsap.set('.transition-marquee', { opacity: 0 })
 
-      // Mobile layout fade in
-      mobileTween = gsap.fromTo('.transition-mobile',
-        {
-          opacity: 0,
-          y: 30
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: 'power2.out',
-          paused: true,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 40%',
-            end: 'bottom 30%',
-            toggleActions: 'play none none reverse',
-            scroller: '#smooth-wrapper'
-          }
-        }
-      )
-
-      // Desktop layout animations
+      // Fade in animation
       tl = gsap.timeline({
-        paused: true,
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 70%',
@@ -280,242 +312,121 @@ const Transition = () => {
         }
       })
 
-      tl.fromTo('.transition-videos-left',
-        { opacity: 0, x: -50 },
-        { opacity: 1, x: 0, duration: 1, ease: 'power2.out' }
-      )
-      .fromTo('.transition-titles',
-        { opacity: 0, x: 50 },
-        { opacity: 1, x: 0, duration: 1, ease: 'power2.out' },
-        '-=0.7'
-      )
-      .fromTo('.transition-icons-container',
-        { opacity: 0 },
-        { opacity: 1, duration: 0.5, ease: 'power2.out' },
-        '-=0.5'
-      )
-      .fromTo('.transition-icons',
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: 'power2.out' },
-        '-=0.3'
-      )
-      .fromTo('.transition-text-container',
-        { opacity: 0 },
-        { opacity: 1, duration: 0.5, ease: 'power2.out' },
-        '-=0.6'
-      )
-      .fromTo('.transition-text-right',
-        { opacity: 0, x: 50 },
-        { opacity: 1, x: 0, duration: 0.8, stagger: 0.15, ease: 'power2.out' },
-        '-=0.4'
-      )
+      tl.to('.transition-titles', {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power2.out'
+      })
+      .to('.transition-marquee', {
+        opacity: 1,
+        duration: 0.8,
+        ease: 'power2.out'
+      }, '-=0.5')
+
+      // Add CSS-based infinite scroll animation
+      // If user hasn't opted in for reduced motion, add the animation
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const scrollers = document.querySelectorAll(".scroller");
+        
+        scrollers.forEach((scroller) => {
+          // Add data-animated="true" to enable animation
+          scroller.setAttribute("data-animated", "true");
+
+          // Make an array from the elements within `.scroller__inner`
+          const scrollerInner = scroller.querySelector(".scroller__inner");
+          if (!scrollerInner) return;
+          
+          const scrollerContent = Array.from(scrollerInner.children);
+
+          // For each item in the array, clone it
+          // add aria-hidden to it
+          // add it into the `.scroller__inner`
+          scrollerContent.forEach((item) => {
+            const duplicatedItem = item.cloneNode(true);
+            duplicatedItem.setAttribute("aria-hidden", "true");
+            scrollerInner.appendChild(duplicatedItem);
+          });
+        });
+      }
     }, 500)
 
     return () => {
-      // Clear the timeout if component unmounts before initialization
-      if (initTimeout) clearTimeout(initTimeout);
+      if (initTimeout) clearTimeout(initTimeout)
+      if (tl) tl.kill()
       
-      // 🧹 IMPORTANT: Explicitly kill the timeline and tween
-      if (mobileTween) mobileTween.kill();
-      if (tl) tl.kill();
-      
-      // Kill any ScrollTriggers specifically tied to this section's ref
       ScrollTrigger.getAll().forEach(trigger => {
         if (trigger.trigger === sectionRef.current) {
-            trigger.kill();
+          trigger.kill()
         }
-      });
+      })
     }
   }, [])
 
+
+  const SkillCard = ({ avatar, gifSrc, header, text }) => (
+    <div 
+      className="skill-card flex-shrink-0 w-64 backdrop-blur-2xl border-2 border-border shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-shadow transition-all duration-300 bg-card/5 "
+    >
+      {/* Avatar/Image on top */}
+      <div className="flex justify-center mb-4">
+        {avatar === 'gif' ? (
+          <div className="w-20 h-20 flex items-center justify-center" style={{ minHeight: '80px' }}>
+            <img 
+              src={gifSrc} 
+              alt={header}
+              style={{ 
+                width: '80px', 
+                height: '80px',
+                objectFit: 'contain'
+              }}
+            />
+          </div>
+        ) : (
+          <div className="text-5xl">{avatar}</div>
+        )}
+      </div>
+      
+      {/* Header */}
+      <h3 
+        className="text-lg font-bold font-lato text-center mb-4 text-primary"
+      >{header}</h3>
+      
+      {/* Description text */}
+      <p 
+        className="text-sm font-lato-light leading-relaxed text-center text-muted-foreground"
+      >{text}</p>
+    </div>
+  )
+
   return (
-    <>
-      {/* Mobile Layout */}
-<section 
-  ref={sectionRef}
-  id="Transition" 
-  className="min-h-screen lg:hidden px-4 sm:px-6 py-12 sm:py-20 bg-[#F7EFE2] flex items-center justify-center"
->
-  <div className="transition-mobile space-y-16 max-w-2xl mx-auto opacity-0">
-    {/* Titles */}
-    <div className="text-center space-y-3">
-      <h2 className="transition-titles text-5xl sm:text-6xl md:text-7xl font-extrabold text-[#F7EFE2] font-lato" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>
-        UX Designer
-      </h2>
-      <h2 className="transition-titles text-5xl sm:text-6xl md:text-7xl font-extrabold text-[#9E8E74] font-lato">
-        Architect
-      </h2>
-    </div>
+    <section 
+      ref={sectionRef}
+      id="Transition" 
+      className="relative z-10 pt-40 pb-50 bg-card"
+    >
 
-    {/* Skills - No video grid */}
-    <div className="space-y-12">
-      <div className="text-center">
-        <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 flex items-center justify-center">
-          <img 
-            src="/images/transition/small_icons/1.png" 
-            alt="Design process icon" 
-            className="w-full h-full object-contain"
-          />
-        </div>
-        <h3 className="text-2xl sm:text-3xl md:text-4xl font-lato-regular font-bold text-[#9E8E74] mb-4">
-          Design process
-        </h3>
-        <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-lato-light leading-relaxed max-w-lg mx-auto">
-          research, ideation, and refinement, focused on user needs and context.
-        </p>
-      </div>
-      <div className="text-center">
-        <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 flex items-center justify-center">
-          <img 
-            src="/images/transition/small_icons/2.png" 
-            alt="Teamwork icon" 
-            className="w-full h-full object-contain"
-          />
-        </div>
-        <h3 className="text-2xl sm:text-3xl md:text-4xl font-lato-regular font-bold text-[#9E8E74] mb-4">
-          Work in multi-disciplinary teams
-        </h3>
-        <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-lato-light leading-relaxed max-w-lg mx-auto">
-          Teamwork across diverse expertise. Collaboration between designers, engineers, and other professionals.
-        </p>
-      </div>
-      <div className="text-center">
-        <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 flex items-center justify-center">
-          <img 
-            src="/images/transition/small_icons/3.png" 
-            alt="Client communication icon" 
-            className="w-full h-full object-contain"
-          />
-        </div>
-        <h3 className="text-2xl sm:text-3xl md:text-4xl font-lato-regular font-bold text-[#9E8E74] mb-4">
-          Deal with clients and stakeholders
-        </h3>
-        <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-lato-light leading-relaxed max-w-lg mx-auto">
-          Clear communication and feedback integration. Translating goals and constraints into effective solutions.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-      {/* Desktop Layout */}
-      <section 
-        id="Transition" 
-        className="min-h-[60vh] px-6 py-20 relative hidden lg:block bg-[#F7EFE2]"
-      >
-        <div className="max-w-7xl mx-auto h-full flex items-center">
-          
-          {/* Left side - 3 columns with 3 videos each */}
-          <div className="transition-videos-left absolute left-[4.17%] flex w-1/3 mt-[15%] opacity-0"
-          style={{ gap: '1.5vw' }}>
-            {/* Column 1 */}
-            <div className="flex flex-col w-1/3" style={{ gap: '1vw' }}>
-              {[0, 1, 2].map(i => (
-                <div key={i} className="rounded-lg overflow-hidden" style={{ width: '10vw', height: '10vw' }}>
-                  <video 
-                    src={videos[i]} 
-                    alt={`Video ${i + 1}`} 
-                    className="w-full h-full object-cover" 
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline
-                  />
-                </div>
-              ))}
-            </div>
-            
-            {/* Column 2 */}
-            <div className="flex flex-col w-1/3" style={{ gap: '1vw' }}>
-              {[3, 4, 5].map(i => (
-                <div key={i} className="rounded-lg overflow-hidden" style={{ width: '10vw', height: '10vw' }}>
-                  <video 
-                    src={videos[i]} 
-                    alt={`Video ${i + 1}`} 
-                    className="w-full h-full object-cover" 
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline
-                  />
-                </div>
-              ))}
-            </div>
-            
-            {/* Column 3 */}
-            <div className="flex flex-col w-1/3" style={{ gap: '1vw' }}>
-              {[6, 7, 8].map(i => (
-                <div key={i} className="rounded-lg overflow-hidden" style={{ width: '10vw', height: '10vw' }}>
-                  <video 
-                    src={videos[i]} 
-                    alt={`Video ${i + 1}`} 
-                    className="w-full h-full object-cover" 
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Middle - 3 small icons */}
-          <div className="transition-icons-container absolute top-[12%] right-[35%] flex flex-col w-1/3 justify-center items-center opacity-0"
-          style={{ gap: '7vw' }}>
-            {[1, 2, 3].map(i => (
-              <div key={i} className="transition-icons flex items-center justify-center" style={{ width: '3vw', height: '3vw' }}>
-                <img 
-                  src={`/images/transition/small_icons/${i}.png`}
-                  alt="Icon" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
+      {/* Marquee Cards Container */}
+      <div className="transition-marquee opacity-0 space-y-20 max-w-[1800px] mx-auto mt-24">
+        {/* Top Row - Scrolling Left */}
+        <div className="scroller" data-direction="left" data-speed="slow">
+          <div className="scroller__inner">
+            {cardData.slice(0, 10).map(card => (
+              <SkillCard key={`top-${card.id}`} {...card} />
             ))}
           </div>
+        </div>
 
-          {/* Right side - Titles */}
-          <div 
-            className="transition-titles absolute opacity-0"
-            style={{ 
-              top: '-3.5vw',
-              right: '22vw'
-            }}
-          >
-            <div style={{ marginBottom: '-1.9vw' }}>
-              <h2 className="font-extrabold text-[#F7EFE2] font-lato" style={{ fontSize: '2.8vw' }}>
-                UX Designer
-              </h2>
-            </div>
-            <div className="text-center" style={{ marginLeft: '11.2vw' }}>
-              <h2 className="font-extrabold text-[#9E8E74] font-lato" style={{ fontSize: '2.8vw' }}>
-                Architect
-              </h2>
-            </div>
-          </div>
-
-          {/* Right side - Text descriptions */}
-          <div className="transition-text-container absolute top-[10%] right-[15%] w-1/3 flex flex-col items-center opacity-0"
-          style={{ gap: '4vw' }}>
-            {[
-              { title: 'Design process', text: 'research, ideation, and refinement, focused on user needs and context.' },
-              { title: 'Work in multi-disciplinary teams', text: 'Teamwork across diverse expertise. Collaboration between designers, engineers, and other professionals.' },
-              { title: 'Deal with clients and stakeholders', text: 'Clear communication and feedback integration. Translating goals and constraints into effective solutions.' }
-            ].map((item, i) => (
-              <div key={i} className="transition-text-right text-center">
-                <h2 className="font-bold text-[#9E8E74] mb-4" style={{ fontSize: '1.4vw' }}>
-                  {item.title}
-                </h2>
-                <p className="text-gray-600 leading-relaxed" style={{ fontSize: '0.9vw' }}>
-                  {item.text}
-                </p>
-              </div>
+        {/* Bottom Row - Scrolling Right */}
+        <div className="scroller" data-direction="right" data-speed="slow">
+          <div className="scroller__inner">
+            {cardData.slice(10, 20).map(card => (
+              <SkillCard key={`bottom-${card.id}`} {...card} />
             ))}
           </div>
-
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   )
 }
 
