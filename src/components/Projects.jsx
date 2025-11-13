@@ -96,13 +96,19 @@ const Projects = () => {
                 <div className="relative z-10 flex flex-col items-center justify-center h-full text-center space-y-6">
                   {/* Text Content */}
                   <div className="space-y-4">
-                    <p className="text-sm lg:text-base text-neutral-400 uppercase tracking-wider">
+                    <p className="text-sm lg:text-base text-neutral-400 uppercase tracking-wider"
+                    style={{fontFamily: 'Lato-light, serif'}}
+                    >
                       Featured Project
                     </p>
-                    <h2 className="text-2xl lg:text-4xl font-bold text-neutral-100">
+                    <h2 className="text-2xl lg:text-4xl font-bold text-neutral-100"
+                    style={{fontFamily: 'Casta, serif'}}
+                    >
                       Cinema Application
                     </h2>
-                    <p className="text-sm lg:text-base text-neutral-300 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-sm lg:text-base text-neutral-300 max-w-3xl mx-auto text-left leading-relaxed"
+                    style={{fontFamily: 'Lato-light, serif'}}
+                    >
                       A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.
                     </p>
                   </div>

@@ -26,7 +26,7 @@ const Header = () => {
             const sections = [
                 { id: 'hero', index: 0 },
                 { id: 'projects', index: 1 },
-                { id: 'contact', index: 2 }
+                { id: 'about', index: 2 }
             ]
 
             const triggers = sections.map(section => {
