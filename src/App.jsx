@@ -1,56 +1,57 @@
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
-
-
-
 import { useLayoutEffect } from 'react'
-import Header from './components/Header';
-import { Hero, Transition } from './components/Hero';
-import Projects from './components/Projects';
-import SmallProjects from './components/SmallProjects';
-import AboutMe from './components/AboutMe';
-import Contact from './components/Contact';
-
-import './App.css';
+import Home from './components/home'
+import CinemaAppDetail from './components/cinema-app'
+import './App.css'
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 
-const App = () => {
+const AppContent = () => {
+  const location = useLocation()
+
   useLayoutEffect(() => {
-    const smoother = ScrollSmoother.create({
-      wrapper: '#smooth-wrapper',
-      content: '#smooth-content',
-      smooth: 1.2,
-      effects: false,
-      normalizeScroll: true,
-      id: 'smooth-scroller' // Add ID so we can reference it from Header
-    })
-    
-    
-    // Ensure ScrollTriggers work properly with ScrollSmoother
-    ScrollTrigger.refresh()
-    
-    return () => {
-      smoother.kill()
+    // Only initialize ScrollSmoother on home page
+    if (location.pathname === '/') {
+      const smoother = ScrollSmoother.create({
+        wrapper: '#smooth-wrapper',
+        content: '#smooth-content',
+        smooth: 1.2,
+        effects: false,
+        normalizeScroll: true,
+        id: 'smooth-scroller'
+      })
+      
+      ScrollTrigger.refresh()
+      
+      return () => {
+        smoother.kill()
+      }
+    } else {
+      // Clean up any existing smoother when navigating away
+      const existingSmoother = ScrollTrigger.getById('smooth-scroller')
+      if (existingSmoother) {
+        existingSmoother.kill()
+      }
+      ScrollTrigger.refresh()
     }
-  }, [])
+  }, [location.pathname])
+
   return (
-    <>
-      <Header />
-      <div id="smooth-wrapper">
-        <div id="smooth-content">
-          <main className="relative min-h-screen w-screen overflow-x-hidden bg-background">
-            <Hero />
-            <Transition />
-            <Projects />
-            <SmallProjects />
-            <AboutMe />
-            <Contact />
-          </main>
-        </div>
-      </div>
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/cinema-app" element={<CinemaAppDetail />} />
+    </Routes>
+  )
+}
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   )
 }
 

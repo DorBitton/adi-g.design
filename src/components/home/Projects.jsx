@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
@@ -7,17 +8,18 @@ import { ArrowUpRight } from 'lucide-react'
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 
 const Projects = () => {  
+  const navigate = useNavigate()
   const sectionRef = useRef(null)
 
   const projects = [
     {
       id: 1,
-      title: 'Stadia Bluetooth',
-      company: 'Google',
-      year: '23',
-      description: 'Giving a second life to over a million controllers.',
+      title: 'Cinema Application',
+      company: 'UI/UX Design',
+      year: '24',
+      description: 'A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.',
       image: '/images/projects/1.png',
-      link: 'https://example.com'
+      link: '/cinema-app'
     }
   ]
 
@@ -64,7 +66,11 @@ const Projects = () => {
 
   const handleProjectClick = (link) => {
     if (link) {
-      window.open(link, '_blank')
+      if (link.startsWith('/')) {
+        navigate(link)
+      } else {
+        window.open(link, '_blank')
+      }
     }
   }
 

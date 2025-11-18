@@ -277,7 +277,7 @@ const Transition = () => {
     { id: 5, gifSrc: '/images/cards/Ideation.png', header: 'Ideation', text: 'Brainstorming creative solutions' },
     { id: 6, gifSrc: '/images/cards/Data Analysis.png', header: 'Data Analysis', text: 'Making informed design decisions' },
     { id: 7, gifSrc: '/images/cards/Collaboration.png', header: 'Collaboration', text: 'Working with cross-functional teams' },
-    { id: 8, gifSrc: '/images/cards/strategy.png', header: 'Strategy', text: 'Aligning design with business goals' },
+    { id: 8, gifSrc: '/images/cards/Strategy.png', header: 'Strategy', text: 'Aligning design with business goals' },
     { id: 9, gifSrc: '/images/cards/Prototyping.png', header: 'Prototyping', text: 'Building interactive mockups' },
     { id: 10, gifSrc: '/images/cards/Innovation.png', header: 'Innovation', text: 'Pushing boundaries of design' },
     { id: 11, gifSrc: '/images/cards/Mobile First.png', header: 'Mobile First', text: 'Designing for all screen sizes' },
@@ -293,13 +293,18 @@ const Transition = () => {
   ]
 
   useEffect(() => {
+    if (!sectionRef.current) return
+    
     let tl;
     let initTimeout;
     
     initTimeout = setTimeout(() => {
-      // Set initial state
-      gsap.set('.transition-titles', { opacity: 0, y: 0 })
-      gsap.set('.transition-marquee', { opacity: 0 })
+      // Set initial state - scoped to section
+      const titles = sectionRef.current.querySelectorAll('.transition-titles')
+      const marquee = sectionRef.current.querySelectorAll('.transition-marquee')
+      
+      if (titles.length) gsap.set(titles, { opacity: 0, y: 0 })
+      if (marquee.length) gsap.set(marquee, { opacity: 0 })
 
       // Fade in animation
       tl = gsap.timeline({
@@ -312,22 +317,27 @@ const Transition = () => {
         }
       })
 
-      tl.to('.transition-titles', {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power2.out'
-      })
-      .to('.transition-marquee', {
-        opacity: 1,
-        duration: 0.8,
-        ease: 'power2.out'
-      }, '-=0.5')
+      if (titles.length) {
+        tl.to(titles, {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power2.out'
+        })
+      }
+      
+      if (marquee.length) {
+        tl.to(marquee, {
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power2.out'
+        }, '-=0.5')
+      }
 
       // Add CSS-based infinite scroll animation
       // If user hasn't opted in for reduced motion, add the animation
       if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        const scrollers = document.querySelectorAll(".scroller");
+        const scrollers = sectionRef.current.querySelectorAll(".scroller");
         
         scrollers.forEach((scroller) => {
           // Add data-animated="true" to enable animation

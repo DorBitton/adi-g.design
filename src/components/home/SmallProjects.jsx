@@ -42,14 +42,20 @@ const SmallProjects = () => {
 
   useGSAP(
     () => {
-      const cards = gsap.utils.toArray('.stacked-card');
+      if (!containerRef.current) return
+      
+      const cards = gsap.utils.toArray('.stacked-card', containerRef.current);
       
       if (!cards.length) return;
 
-      // Set initial states
-      gsap.set('.card__image', { clipPath: 'inset(100% 0 0 0)' });
-      gsap.set('.image-container', { clipPath: 'inset(100% 0 0 0)' });
-      gsap.set('.card__text-item', { opacity: 0, y: 30 });
+      // Set initial states - scoped to container
+      const cardImages = containerRef.current.querySelectorAll('.card__image')
+      const imageContainers = containerRef.current.querySelectorAll('.image-container')
+      const textItems = containerRef.current.querySelectorAll('.card__text-item')
+      
+      if (cardImages.length) gsap.set(cardImages, { clipPath: 'inset(100% 0 0 0)' });
+      if (imageContainers.length) gsap.set(imageContainers, { clipPath: 'inset(100% 0 0 0)' });
+      if (textItems.length) gsap.set(textItems, { opacity: 0, y: 30 });
 
       cards.forEach((card, i) => {
         const image = card.querySelector('.card__image');
