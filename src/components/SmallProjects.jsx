@@ -246,7 +246,7 @@ const SmallProjects = () => {
         </div>
         
         {/* Extra space after cards so last card has room to scroll */}
-        <div className="h-screen" />
+        <div className="h-[40vh]" />
       </div>
     </section>
   );

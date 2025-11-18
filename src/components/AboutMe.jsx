@@ -46,17 +46,18 @@ const AboutMe = () => {
   return (
     <section
       ref={containerRef}
-      className="relative w-full min-h-[50vh] bg-card py-20 mt-[-40vh]"
+      className="relative w-full min-h-[50vh] bg-card mt-[-30vh] flex flex-col"
     >
       {/* Top Brown Header Bar */}
       <div id="about"
         ref={headerBarRef}
-        className="h-[1.5%] min-h-[2px] bg-foreground opacity-30 w-full"
+        className="h-[1.5%] min-h-[2px] bg-foreground opacity-30 w-full flex-shrink-0"
       />
 
       {/* About Me Content */}
-      <div className="max-w-4xl mx-auto px-6 sm:px-8 md:px-12 py-16 md:py-24">
-        <div ref={textRef} className="space-y-6 md:space-y-8">
+      <div className="flex-1 flex items-center justify-center">
+        <div className="max-w-4xl mx-auto px-6 sm:px-8 md:px-12 w-full">
+          <div ref={textRef} className="space-y-6 md:space-y-8">
           <p className="text-white md:text-lg leading-relaxed text-gray-900 font-lato">
             I've always felt that design isn't just something we create — it's something that surrounds us, shaping how we live, feel, and connect.{' '}
             <strong className="font-lato-bold">For me, design is where art and science meet:</strong> a balance between emotion and logic, creativity and structure.
@@ -71,6 +72,7 @@ const AboutMe = () => {
             Empathy is at the heart of everything I do.{' '}
             <strong className="font-lato-bold">I care about how people feel when they use something I've designed</strong> — whether it makes them smile, saves them time, or simply feels right.
           </p>
+          </div>
         </div>
       </div>
     </section>
