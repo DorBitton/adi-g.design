@@ -17,7 +17,7 @@ const Projects = () => {
       title: 'Cinema Application',
       company: 'UI/UX Design',
       year: '24',
-      description: 'A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.',
+      description: 'UI/UX redesign of a movie booking app, transforming a cluttered interface into a clean, modern experience. Features intuitive navigation, bold visual hierarchy, and a streamlined booking flow from browsing to seat selection.',
       image: '/images/projects/1.png',
       link: '/cinema-app'
     }
@@ -78,10 +78,10 @@ const Projects = () => {
     <div id="projects" className="w-full py-20 px-6 lg:px-12 bg-card">
       <section 
         ref={sectionRef}
-        className="h-auto lg:h-[85vh]"
+        className="h-auto lg:min-h-[85vh]"
 
       >
-        <div className="grid grid-cols-1 gap-8 h-auto lg:h-[80vh] lg:w-[75vw] mx-auto">
+        <div className="grid grid-cols-1 gap-8 h-auto lg:min-h-[80vh] lg:w-[75vw] mx-auto">
           {projects.map((project) => (
             <div
               key={project.id}
@@ -101,22 +101,19 @@ const Projects = () => {
                 {/* Content */}
                 <div className="relative z-10 flex flex-col items-center justify-center h-full text-center space-y-6">
                   {/* Text Content */}
-                  <div className="space-y-4">
-                    <p className="text-sm lg:text-base text-neutral-400 uppercase tracking-wider"
-                    style={{fontFamily: 'Lato-light, serif'}}
-                    >
+                  <div className="space-y-8">
+                    <p className="text-2xl font-light font-lato-light text-neutral-300 tracking-wider -translate-y-[3vh]">
                       Featured Project
                     </p>
-                    <h2 className="text-2xl lg:text-4xl font-bold text-neutral-100"
+                    <h2 className="text-[48px] font-bold text-neutral-100 leading-tight"
                     style={{fontFamily: 'Casta, serif'}}
                     >
-                      Cinema Application
+                      <span className="italic">Cinema Application</span>
                     </h2>
-                    <p className="text-sm lg:text-base text-neutral-300 max-w-3xl mx-auto text-left leading-relaxed"
-                    style={{fontFamily: 'Lato-light, serif'}}
-                    >
-                      A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.
-                    </p>
+                    <p className="text-2xl font-light font-lato-light text-neutral-300 max-w-3xl mx-auto text-center leading-relaxed">
+                    UI/UX redesign of a movie booking app, transforming a cluttered interface 
+                    into a clean, modern experience. Features intuitive navigation, bold visual 
+                    hierarchy, and a streamlined booking flow from browsing to seat selection.</p>
                   </div>
 
                   {/* Images in a line */}

@@ -29,7 +29,7 @@
 @font-face {
   font-family: 'Lato-bold';
   src: url('/fonts/Lato-Bold.ttf') format('truetype');
-  font-weight: 700;
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }

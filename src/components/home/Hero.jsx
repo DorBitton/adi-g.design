@@ -73,7 +73,7 @@ const Hero = () => {
   
       const totalWords = phrases.reduce((total, phrase) => total + phrase.words.length, 0)
       const totalAnimationTime = startDelay + (phrases.length * phrasesDelay) + (totalWords * wordDelay)
-      const subtextDelay = totalAnimationTime + 400
+      const subtextDelay = totalAnimationTime - 600
   
       setTimeout(() => {
         setShowSubtext(true)
@@ -251,13 +251,14 @@ const Hero = () => {
           </h1>
         </div>
         
-        <div className="max-w-4xl mx-auto w-full text-center px-4 ">
+        <div className="max-w-4xl mx-auto w-full text-center px-4 mt-[7vh]">
           <p 
-            className={`font-lato-light text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed transition-all duration-1000 text-white ${
+            className={`font-lato-light font-light text-2xl leading-relaxed transition-all duration-1000 text-white ${
               showSubtext ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            a combination that shaped how I understand space, structure, and the way people interact with their environment.
+            a combination that shaped how I understand space, structure,<br />
+            and the way people interact with their environment.
           </p>
         </div>
         </div>
@@ -381,13 +382,13 @@ const Transition = () => {
       {/* Avatar/Image on top */}
       <div className="flex justify-center mb-4">
         {gifSrc ? (
-          <div className="w-14 h-14 flex items-center justify-center" style={{ minHeight: '56px' }}>
+          <div className="w-[50px] h-[50px] flex items-center justify-center" style={{ minHeight: '50px' }}>
             <img 
               src={gifSrc} 
               alt={header}
               style={{ 
-                width: '56px', 
-                height: '56px',
+                width: '50px', 
+                height: '50px',
                 objectFit: 'contain',
                 opacity: 0.7
               }}
@@ -400,12 +401,12 @@ const Transition = () => {
       
       {/* Header */}
       <h3 
-        className="text-lg font-bold font-lato text-center mb-4 text-primary"
+        className="text-xl font-lato-bold text-center mb-4 text-primary"
       >{header}</h3>
       
       {/* Description text */}
       <p 
-        className="text-sm font-lato-light leading-relaxed text-center text-muted-foreground"
+        className="text-base font-lato-light leading-relaxed text-center text-muted-foreground"
       >{text}</p>
     </div>
   )

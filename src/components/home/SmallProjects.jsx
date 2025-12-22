@@ -14,7 +14,7 @@ const SmallProjects = () => {
       id: 1,
       title: 'Chocolate Collection',
       description:
-        'This mini project explores a playful and visually rich interface for presenting different chocolate flavors. The design focuses on smooth micro-interactions and a delightful animation that enhances the sensory feel of chocolate. The goal was to create a simple yet immersive experience—where motion, color, and typography work together to evoke taste and texture in a digital space.',
+        'This mini project explores a playful and visually rich interface for presenting different chocolate flavors. The design focuses on smooth micro - interactions and a delightful animation that enhances the sensory feel of chocolate. The goal was to create a simple yet immersive experience - where motion, color, and typography work together to evoke taste and texture in a digital space.',
       image: '/images/projects/smallProjects/1/1.png',
       images: Array.from({ length: 6 }, (_, i) => `/images/projects/smallProjects/2/${i + 1}.jpg`),
       tools: 'figma',
@@ -24,7 +24,7 @@ const SmallProjects = () => {
       title: 'Urban Movement Concept',
       subtitle: 'Under ground station, commerce, residence.',
       description:
-        'A city in motion. This project transforms everyday movement into an experience—where streets, open spaces, and the train flow together as one living system. The design celebrates rhythm, energy, and the seamless pulse of urban life.',
+        'A city in motion. This project transforms everyday movement into an experience - where streets, open spaces, and the train flow together as one living system. The design celebrates rhythm, energy, and the seamless pulse of urban life.',
       image: '/images/projects/smallProjects/2/1.jpg',
       images: Array.from({ length: 6 }, (_, i) => `/images/projects/smallProjects/2/${i + 1}.jpg`),
       tools: 'Rhino, Twinmotion, Photoshop, Autocad, AI',
@@ -188,7 +188,7 @@ const SmallProjects = () => {
       ref={containerRef}
       className="relative w-full min-h-screen py-32 px-4 sm:px-6 md:px-8 bg-card"
     >
-      <div className="max-w-[100rem] mx-auto">
+      <div className="max-w-[170rem] mx-auto">
         <div className="cards-container relative">
           {projects.map((project, i) => {
             // Alternate layout: even index (0, 2) = image left, odd index (1) = image right
@@ -202,7 +202,7 @@ const SmallProjects = () => {
                 className="stacked-card mb-8 last:mb-0"
                 style={{ zIndex: i + 1 }}
               >
-                <div className="card-inner w-full h-[35vh] bg-card border-2 border-border rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
+                <div className="card-inner w-full h-[40vh] bg-card border-2 border-border rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
                   {/* Image Section */}
                   <div className={`relative w-full md:w-1/2 h-[50%] md:h-full overflow-hidden order-1 ${imageOrder} image-container flex items-center justify-center bg-card`}>
                     {project.images && project.images.length > 0 ? (
@@ -245,15 +245,15 @@ const SmallProjects = () => {
 
                   {/* Text Section */}
                   <div className={`w-full md:w-1/2 h-[50%] md:h-full p-8 md:p-12 flex flex-col justify-center bg-card order-2 ${textOrder}`}>
-                    <h3 className="card__text-item text-3xl md:text-5xl font-bold mb-4 text-foreground">
+                    <h3 className="card__text-item text-[28px] font-lato-bold mb-4 text-foreground">
                       {project.title}
                     </h3>
                     {project.subtitle && (
-                      <p className="card__text-item text-base md:text-lg text-muted-foreground mb-2">
+                      <p className="card__text-item text-[20px] font-lato-light font-light text-muted-foreground mb-3 w-full md:w-4/5 hidden md:block">
                         {project.subtitle}
                       </p>
                     )}
-                    <p className="card__text-item text-base md:text-lg text-muted-foreground mb-6 w-full md:w-4/5 hidden md:block">
+                    <p className="card__text-item text-[20px] font-lato-light font-light text-muted-foreground mb-6 w-full md:w-4/5 hidden md:block">
                       {project.description}
                     </p>
                     <div className="card__text-item flex items-center gap-2">
