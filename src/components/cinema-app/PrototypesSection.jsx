@@ -53,11 +53,12 @@ const PrototypesSection = ({ prototypesRef }) => {
     }
   }, [prototypesRef])
 
+  const baseUrl = import.meta.env.BASE_URL
   const prototypeImages = [
-    { src: '/images/cinema-app/Prototype/home.png', alt: 'Home Screen Prototype' },
-    { src: '/images/cinema-app/Prototype/movie-details.png', alt: 'Movie Details Prototype' },
-    { src: '/images/cinema-app/Prototype/showtimes.png', alt: 'Showtimes Prototype' },
-    { src: '/images/cinema-app/Prototype/seat-selection.png', alt: 'Seat Selection Prototype' },
+    { src: `${baseUrl}images/cinema-app/Prototype/home.png`, alt: 'Home Screen Prototype' },
+    { src: `${baseUrl}images/cinema-app/Prototype/movie-details.png`, alt: 'Movie Details Prototype' },
+    { src: `${baseUrl}images/cinema-app/Prototype/showtimes.png`, alt: 'Showtimes Prototype' },
+    { src: `${baseUrl}images/cinema-app/Prototype/seat-selection.png`, alt: 'Seat Selection Prototype' },
   ]
 
   return (

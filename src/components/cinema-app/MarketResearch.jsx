@@ -51,12 +51,13 @@ const MarketResearch = ({ marketResearchRef }) => {
     }
   }, [marketResearchRef])
 
+  const baseUrl = import.meta.env.BASE_URL
   const streamingLogos = [
-    { name: 'Netflix', src: '/images/cinema-app/market-research/netflix.png', alt: 'Netflix' },
-    { name: 'Disney+', src: '/images/cinema-app/market-research/disney.png', alt: 'Disney+' },
-    { name: 'Prime Video', src: '/images/cinema-app/market-research/prime.png', alt: 'Prime Video' },
-    { name: 'HBO Max', src: '/images/cinema-app/market-research/hbo.png', alt: 'HBO Max' },
-    { name: 'Apple TV+', src: '/images/cinema-app/market-research/apple.png', alt: 'Apple TV+' },
+    { name: 'Netflix', src: `${baseUrl}images/cinema-app/market-research/netflix.png`, alt: 'Netflix' },
+    { name: 'Disney+', src: `${baseUrl}images/cinema-app/market-research/disney.png`, alt: 'Disney+' },
+    { name: 'Prime Video', src: `${baseUrl}images/cinema-app/market-research/prime.png`, alt: 'Prime Video' },
+    { name: 'HBO Max', src: `${baseUrl}images/cinema-app/market-research/hbo.png`, alt: 'HBO Max' },
+    { name: 'Apple TV+', src: `${baseUrl}images/cinema-app/market-research/apple.png`, alt: 'Apple TV+' },
   ]
 
   return (

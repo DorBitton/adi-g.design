@@ -115,7 +115,7 @@ const CinemaAppHero = ({ titleRef, subtitleRef, mainImageRef }) => {
         <div className="flex justify-center mt-auto mb-0">
           <img
             ref={mainImageRef}
-            src="/images/cinema-app/v429_133.png"
+            src={`${import.meta.env.BASE_URL}images/cinema-app/v429_133.png`}
             alt="Cinema App main view"
             className="w-full max-w-[300px] lg:max-w-[400px] h-auto opacity-100"
           />

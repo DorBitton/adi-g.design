@@ -9,14 +9,15 @@ gsap.registerPlugin(ScrollTrigger);
 const SmallProjects = () => {
   const containerRef = useRef(null);
 
+  const baseUrl = import.meta.env.BASE_URL
   const projects = [
     {
       id: 1,
       title: 'Chocolate Collection',
       description:
         'This mini project explores a playful and visually rich interface for presenting different chocolate flavors. The design focuses on smooth micro - interactions and a delightful animation that enhances the sensory feel of chocolate. The goal was to create a simple yet immersive experience - where motion, color, and typography work together to evoke taste and texture in a digital space.',
-      image: '/images/projects/smallProjects/1/1.png',
-      images: Array.from({ length: 6 }, (_, i) => `/images/projects/smallProjects/2/${i + 1}.jpg`),
+      image: `${baseUrl}images/projects/smallProjects/1/1.png`,
+      images: Array.from({ length: 6 }, (_, i) => `${baseUrl}images/projects/smallProjects/2/${i + 1}.jpg`),
       tools: 'figma',
     },
     {
@@ -25,8 +26,8 @@ const SmallProjects = () => {
       subtitle: 'Under ground station, commerce, residence.',
       description:
         'A city in motion. This project transforms everyday movement into an experience - where streets, open spaces, and the train flow together as one living system. The design celebrates rhythm, energy, and the seamless pulse of urban life.',
-      image: '/images/projects/smallProjects/2/1.jpg',
-      images: Array.from({ length: 6 }, (_, i) => `/images/projects/smallProjects/2/${i + 1}.jpg`),
+      image: `${baseUrl}images/projects/smallProjects/2/1.jpg`,
+      images: Array.from({ length: 6 }, (_, i) => `${baseUrl}images/projects/smallProjects/2/${i + 1}.jpg`),
       tools: 'Rhino, Twinmotion, Photoshop, Autocad, AI',
     },
     {
@@ -34,8 +35,8 @@ const SmallProjects = () => {
       title: 'Coastal Heritage Cities',
       description:
         'Inspired by the rhythm of coastal life, this project re imagines a historic seaside city where tradition meets climate-conscious design. Natural light, wind, and shade shape the experience—creating inviting public spaces that breathe with their surroundings. Drawing from the textures of local stone and the patterns of old streets, the design blends heritage with sustainability, crafting a city that feels both timeless and alive.',
-      image: '/images/projects/smallProjects/3/1.jpg',
-      images: Array.from({ length: 6 }, (_, i) => `/images/projects/smallProjects/3/${i + 1}.jpg`),
+      image: `${baseUrl}images/projects/smallProjects/3/1.jpg`,
+      images: Array.from({ length: 6 }, (_, i) => `${baseUrl}images/projects/smallProjects/3/${i + 1}.jpg`),
       tools: 'Rhino, Twinmotion, Photoshop, AI',
     },
   ];

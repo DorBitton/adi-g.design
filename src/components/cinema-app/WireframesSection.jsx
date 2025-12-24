@@ -53,12 +53,13 @@ const WireframesSection = ({ wireframesRef }) => {
     }
   }, [wireframesRef])
 
+  const baseUrl = import.meta.env.BASE_URL
   const wireframeImages = [
-    { src: '/images/cinema-app/Lofi-Wireframe-Sketches/step 1.png', alt: 'Cinema App screen 1' },
-    { src: '/images/cinema-app/Lofi-Wireframe-Sketches/step 2.png', alt: 'Cinema App screen 2' },
-    { src: '/images/cinema-app/Lofi-Wireframe-Sketches/step 3 1.png', alt: 'Cinema App screen 3' },
-    { src: '/images/cinema-app/Lofi-Wireframe-Sketches/step 4.png', alt: 'Cinema App screen 4' },
-    { src: '/images/cinema-app/Lofi-Wireframe-Sketches/step 5 1.png', alt: 'Cinema App screen 5' },
+    { src: `${baseUrl}images/cinema-app/Lofi-Wireframe-Sketches/step 1.png`, alt: 'Cinema App screen 1' },
+    { src: `${baseUrl}images/cinema-app/Lofi-Wireframe-Sketches/step 2.png`, alt: 'Cinema App screen 2' },
+    { src: `${baseUrl}images/cinema-app/Lofi-Wireframe-Sketches/step 3 1.png`, alt: 'Cinema App screen 3' },
+    { src: `${baseUrl}images/cinema-app/Lofi-Wireframe-Sketches/step 4.png`, alt: 'Cinema App screen 4' },
+    { src: `${baseUrl}images/cinema-app/Lofi-Wireframe-Sketches/step 5 1.png`, alt: 'Cinema App screen 5' },
   ]
 
   return (

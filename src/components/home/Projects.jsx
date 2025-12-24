@@ -11,6 +11,7 @@ const Projects = () => {
   const navigate = useNavigate()
   const sectionRef = useRef(null)
 
+  const baseUrl = import.meta.env.BASE_URL
   const projects = [
     {
       id: 1,
@@ -18,7 +19,7 @@ const Projects = () => {
       company: 'UI/UX Design',
       year: '24',
       description: 'UI/UX redesign of a movie booking app, transforming a cluttered interface into a clean, modern experience. Features intuitive navigation, bold visual hierarchy, and a streamlined booking flow from browsing to seat selection.',
-      image: '/images/projects/1.png',
+      image: `${baseUrl}images/projects/1.png`,
       link: '/cinema-app'
     }
   ]
@@ -121,7 +122,7 @@ const Projects = () => {
                     {[1, 2, 3, 4].map((index) => (
                       <img
                         key={index}
-                        src={`/images/projects/CinemaApp/${index}.png`}
+                        src={`${baseUrl}images/projects/CinemaApp/${index}.png`}
                         alt={`Cinema App screenshot ${index}`}
                         className="flex-1 max-w-full h-auto rounded-lg object-contain"
                       />
