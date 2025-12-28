@@ -5,10 +5,8 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // Base path for GitHub Pages
-  // If your repo is "username.github.io", use base: '/'
-  // Otherwise, use base: '/repo-name/' (replace repo-name with your actual repo name)
-  base: process.env.NODE_ENV === 'production' ? '/Adi-Site/' : '/',
+  // Base path - using '/' for custom domain
+  base: '/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
