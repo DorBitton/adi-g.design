@@ -124,8 +124,8 @@ const PrototypesSection = ({ prototypesRef }) => {
     ],
   ]
 
-  // Flatten all images for mobile carousel
-  const allImages = prototypeRows.flat()
+  // Flatten all images for mobile carousel (excluding arrow)
+  const allImages = prototypeRows.flat().filter(item => item.isImage)
 
   // Navigation functions for mobile carousel
   const handlePrevious = () => {
