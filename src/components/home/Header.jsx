@@ -168,7 +168,7 @@ const Header = () => {
 
                                 {/* LinkedIn Icon */}
                                 <a 
-                                    href="https://linkedin.com/in/yourprofile" 
+                                    href="https://www.linkedin.com/in/adi-gur-aa597a318/" 
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-foreground text-foreground transition-all duration-300 hover:scale-110 hover:bg-foreground hover:text-background hover:border-foreground"
@@ -258,7 +258,7 @@ const Header = () => {
                                 </li>
                                 <li>
                                     <a
-                                        href="https://linkedin.com/in/yourprofile"
+                                        href="https://www.linkedin.com/in/adi-gur-aa597a318/"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg border-2 border-foreground text-foreground font-medium transition-all duration-300 hover:scale-105 hover:bg-foreground hover:text-background"

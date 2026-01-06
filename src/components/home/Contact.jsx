@@ -139,6 +139,39 @@ const Contact = () => {
                     <span>+40756266862</span>
                   </a>
                 </div>
+
+                <div>
+                  <div className={`font-lato-light font-light text-[#F5F0E7]/45 mb-1.5 ${
+                    isMobile ? 'text-[18px]' : 'text-[20px]'
+                  }`}>
+                    LinkedIn
+                  </div>
+                  <a
+                    href="https://www.linkedin.com/in/adi-gur-aa597a318/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center gap-2 font-lato-light font-light hover:text-[#F5F0E7]/80 transition-colors ${
+                      isMobile ? 'text-[18px]' : 'text-[20px]'
+                    }`}
+                  >
+                    <span>linkedin.com/in/adi-gur</span>
+                  </a>
+                </div>
+
+                <div className="pt-2">
+                  <a
+                    href={`${import.meta.env.BASE_URL}resume.pdf`}
+                    download="Adi_Gur_Resume.pdf"
+                    className={`inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-white/10 hover:bg-white/15 border border-white/20 rounded-lg font-lato-light font-light transition-all duration-300 ${
+                      isMobile ? 'text-[16px]' : 'text-[18px]'
+                    }`}
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span>Download Resume</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

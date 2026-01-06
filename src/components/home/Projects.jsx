@@ -147,7 +147,7 @@ const Projects = () => {
                         <img
                           src={`${baseUrl}images/cinema-app/Prototype/iPhone 16 Pro.png`}
                           alt="iPhone 16 Pro - Cinema App"
-                          className="w-full max-w-[493px] h-auto rounded-lg object-contain"
+                          className="w-full h-auto rounded-lg object-contain"
                         />
                       </div>
                     ) : (
@@ -221,7 +221,7 @@ const Projects = () => {
                         <img
                           src={`${baseUrl}images/cinema-app/Prototype/iPhone 16 Pro.png`}
                           alt="iPhone 16 Pro - Cinema App"
-                          className="w-full max-w-[493px] h-auto rounded-lg object-contain"
+                          className="w-full max-w-[592px] h-auto rounded-lg object-contain"
                         />
                       </div>
                     ) : (
