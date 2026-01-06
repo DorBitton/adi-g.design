@@ -18,8 +18,7 @@ const SmallProjects = () => {
       id: 1,
       title: 'Chocolate Collection',
       description: 'This mini project explores a playful and visually rich interface for presenting different chocolate flavors. The design focuses on smooth micro - interactions and a delightful animation that enhances the sensory feel of chocolate. The goal was to create a simple yet immersive experience - where motion, color, and typography work together to evoke taste and texture in a digital space.',
-      image: `${baseUrl}images/projects/smallProjects/1/1.png`,
-      images: Array.from({ length: 6 }, (_, i) => `${baseUrl}images/projects/smallProjects/2/${i + 1}.jpg`),
+      image: `${baseUrl}images/projects/smallProjects/1/1.gif`,
       tools: 'figma',
     },
     {
@@ -165,7 +164,7 @@ const SmallProjects = () => {
                   isMobile ? 'h-auto min-h-[500px]' : isTablet ? 'h-auto min-h-[600px]' : 'h-[40vh]'
                 }`}>
                   {/* Image Section */}
-                  <div className={`relative w-full overflow-hidden image-container flex items-center justify-center bg-card ${getImageClass()} ${imageOrder}`}>
+                  <div className={`relative w-full overflow-hidden image-container flex items-center justify-center ${project.id !== 1 ? 'bg-card' : ''} ${getImageClass()} ${imageOrder}`}>
                     {project.images?.length > 0 ? (
                       <>
                         {project.images.map((imgSrc, imgIndex) => (
@@ -192,7 +191,7 @@ const SmallProjects = () => {
                         <img
                           src={project.image}
                           alt={project.title}
-                          className="card__image w-[90%] h-[90%] object-cover rounded-2xl"
+                          className="card__image w-[90%] h-[90%] object-contain rounded-2xl"
                           style={{
                             position: 'absolute',
                             top: '50%',
@@ -200,10 +199,12 @@ const SmallProjects = () => {
                             transform: 'translate(-50%, -50%)'
                           }}
                         />
-                        <div 
-                          className="absolute w-[90%] h-[90%] bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none rounded-2xl" 
-                          style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} 
-                        />
+                        {project.id !== 1 && (
+                          <div 
+                            className="absolute w-[90%] h-[90%] bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none rounded-2xl" 
+                            style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} 
+                          />
+                        )}
                       </>
                     )}
                   </div>
