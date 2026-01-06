@@ -7,6 +7,7 @@ import UXPatterns from './UXPatterns'
 import InformationArchitecture from './InformationArchitecture'
 import WireframesSection from './WireframesSection'
 import PrototypesSection from './PrototypesSection'
+import Contact from '../home/Contact'
 
 const CinemaAppDetail = () => {
   const titleRef = useRef(null)
@@ -18,6 +19,7 @@ const CinemaAppDetail = () => {
   const wireframesRef = useRef(null)
   const prototypesRef = useRef(null)
   const mainImageRef = useRef(null)
+  const contactRef = useRef(null)
 
   return (
     <div className="w-full min-h-screen bg-black text-white relative overflow-x-hidden">
@@ -33,6 +35,7 @@ const CinemaAppDetail = () => {
       <InformationArchitecture iaRef={iaRef} />
       <WireframesSection wireframesRef={wireframesRef} />
       <PrototypesSection prototypesRef={prototypesRef} />
+      <Contact />
     </div>
   )
 }

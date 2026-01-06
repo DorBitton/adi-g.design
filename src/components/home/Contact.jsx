@@ -89,59 +89,58 @@ const Contact = () => {
           </div>
 
           {/* Right side - Contact Info */}
-          <div className={isMobile ? 'w-full' : isTablet ? 'w-full' : 'w-full lg:w-[320px] xl:w-[360px]'}>
-            {/* Inner glass panel */}
-            <div className={`flex flex-col gap-5 text-[#F5F0E7] rounded-3xl border border-white/15 bg-white/5 backdrop-blur-2xl shadow-[0_0_30px_rgba(0,0,0,0.45)] ${
-              isMobile ? 'p-5' : 'p-6 sm:p-7'
-            }`}>
-              <div className={`font-lato-light font-light text-[#F5F0E7]/45 mb-1 ${
-                isMobile ? 'text-[18px]' : 'text-[20px]'
-              }`}>
-                Contact
-              </div>
-              <div className="space-y-4">
+          <div className={isMobile ? 'w-full' : isTablet ? 'w-full' : 'w-full lg:w-[400px] xl:w-[440px]'}>
+            <div className="flex flex-col text-[#F5F0E7]">
+              {/* Row 1: Name + Adi Gur and Phone */}
+              <div className="grid grid-cols-2 gap-12 mb-8">
                 <div>
+                  <div className={`font-lato-light font-light text-primary mb-2 ${
+                    isMobile ? 'text-[18px]' : 'text-[20px]'
+                  }`}>
+                    Name
+                  </div>
                   <div className={`font-lato-light font-light ${
                     isMobile ? 'text-[18px]' : 'text-[20px]'
                   }`}>
                     Adi Gur
                   </div>
                 </div>
-
                 <div>
-                  <div className={`font-lato-light font-light text-[#F5F0E7]/45 mb-1.5 ${
-                    isMobile ? 'text-[18px]' : 'text-[20px]'
-                  }`}>
-                    Email
-                  </div>
-                  <a
-                    href="mailto:adigur94@gmail.com"
-                    className={`inline-flex items-center gap-2 font-lato-light font-light ${
-                      isMobile ? 'text-[18px]' : 'text-[20px]'
-                    }`}
-                  >
-                    <span>adigur94@gmail.com</span>
-                  </a>
-                </div>
-
-                <div>
-                  <div className={`font-lato-light font-light text-[#F5F0E7]/45 mb-1.5 ${
+                  <div className={`font-lato-light font-light text-primary mb-2 ${
                     isMobile ? 'text-[18px]' : 'text-[20px]'
                   }`}>
                     Phone
                   </div>
                   <a
                     href="tel:+40756266862"
-                    className={`inline-flex items-center gap-2 font-lato-light font-light ${
+                    className={`font-lato-light font-light hover:text-[#F5F0E7]/80 transition-colors ${
                       isMobile ? 'text-[18px]' : 'text-[20px]'
                     }`}
                   >
-                    <span>+40756266862</span>
+                    +40756266862
                   </a>
                 </div>
+              </div>
 
+              {/* Row 2: Email and LinkedIn */}
+              <div className="grid grid-cols-2 gap-12 mb-10">
                 <div>
-                  <div className={`font-lato-light font-light text-[#F5F0E7]/45 mb-1.5 ${
+                  <div className={`font-lato-light font-light text-primary mb-2 ${
+                    isMobile ? 'text-[18px]' : 'text-[20px]'
+                  }`}>
+                    Email
+                  </div>
+                  <a
+                    href="mailto:adigur94@gmail.com"
+                    className={`font-lato-light font-light hover:text-[#F5F0E7]/80 transition-colors ${
+                      isMobile ? 'text-[18px]' : 'text-[20px]'
+                    }`}
+                  >
+                    adigur94@gmail.com
+                  </a>
+                </div>
+                <div>
+                  <div className={`font-lato-light font-light text-primary mb-2 ${
                     isMobile ? 'text-[18px]' : 'text-[20px]'
                   }`}>
                     LinkedIn
@@ -150,28 +149,29 @@ const Contact = () => {
                     href="https://www.linkedin.com/in/adi-gur-aa597a318/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-2 font-lato-light font-light hover:text-[#F5F0E7]/80 transition-colors ${
+                    className={`font-lato-light font-light hover:text-[#F5F0E7]/80 transition-colors ${
                       isMobile ? 'text-[18px]' : 'text-[20px]'
                     }`}
                   >
-                    <span>linkedin.com/in/adi-gur</span>
+                    linkedin.com/in/adi-gur
                   </a>
                 </div>
+              </div>
 
-                <div className="pt-2">
-                  <a
-                    href={`${import.meta.env.BASE_URL}resume.pdf`}
-                    download="Adi_Gur_Resume.pdf"
-                    className={`inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-white/10 hover:bg-white/15 border border-white/20 rounded-lg font-lato-light font-light transition-all duration-300 ${
-                      isMobile ? 'text-[16px]' : 'text-[18px]'
-                    }`}
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <span>Download Resume</span>
-                  </a>
-                </div>
+              {/* Download Resume button - slightly left of center */}
+              <div className="flex justify-center -ml-20">
+                <a
+                  href={`${import.meta.env.BASE_URL}resume.pdf`}
+                  download="Adi_Gur_Resume.pdf"
+                  className={`inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/15 border border-white/20 rounded-lg font-lato-light font-light transition-all duration-300 ${
+                    isMobile ? 'text-[16px]' : 'text-[18px]'
+                  }`}
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Download Resume</span>
+                </a>
               </div>
             </div>
           </div>

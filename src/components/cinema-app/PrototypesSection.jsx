@@ -7,6 +7,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const PrototypesSection = ({ prototypesRef }) => {
   const containerRef = useRef(null)
+  const nextStepsRef = useRef(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [useCarousel, setUseCarousel] = useState(false)
 
@@ -58,6 +59,32 @@ const PrototypesSection = ({ prototypesRef }) => {
           }
         )
 
+        // Next Steps section animation
+        if (nextStepsRef.current) {
+          const nextStepsItems = nextStepsRef.current?.children || []
+          gsap.fromTo(
+            nextStepsItems,
+            {
+              opacity: 0,
+              y: 50,
+              scale: 0.95,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.8,
+              stagger: 0.15,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: nextStepsRef.current,
+                start: 'top 70%',
+                toggleActions: 'play none none reverse',
+              },
+            }
+          )
+        }
+
         ScrollTrigger.refresh()
       }, containerRef)
     }, 50)
@@ -73,27 +100,27 @@ const PrototypesSection = ({ prototypesRef }) => {
   const baseUrl = import.meta.env.BASE_URL
   
   const prototypeRows = [
-    // Row 1: 1, 2, Arrow 1, 3, 3a, 3b
+    // Row 1: 1, 2, Arrow SVG, 3, 3a, 3b
     [
-      { src: `${baseUrl}images/cinema-app/Prototype/1.png`, alt: 'Screen 1' },
-      { src: `${baseUrl}images/cinema-app/Prototype/2.png`, alt: 'Screen 2' },
-      { src: `${baseUrl}images/cinema-app/Prototype/Arrow 1.png`, alt: 'Arrow 1' },
-      { src: `${baseUrl}images/cinema-app/Prototype/3.png`, alt: 'Screen 3' },
-      { src: `${baseUrl}images/cinema-app/Prototype/3a.png`, alt: 'Screen 3a' },
-      { src: `${baseUrl}images/cinema-app/Prototype/3b.png`, alt: 'Screen 3b' },
+      { src: `${baseUrl}images/cinema-app/Prototype/1.png`, alt: 'Screen 1', isImage: true },
+      { src: `${baseUrl}images/cinema-app/Prototype/2.png`, alt: 'Screen 2', isImage: true },
+      { src: null, alt: 'Arrow', isImage: false }, // SVG Arrow placeholder
+      { src: `${baseUrl}images/cinema-app/Prototype/3.png`, alt: 'Screen 3', isImage: true },
+      { src: `${baseUrl}images/cinema-app/Prototype/3a.png`, alt: 'Screen 3a', isImage: true },
+      { src: `${baseUrl}images/cinema-app/Prototype/3b.png`, alt: 'Screen 3b', isImage: true },
     ],
     // Row 2: 3, 4, 5
     [
-      { src: `${baseUrl}images/cinema-app/Prototype/3.png`, alt: 'Screen 3' },
-      { src: `${baseUrl}images/cinema-app/Prototype/4.png`, alt: 'Screen 4' },
-      { src: `${baseUrl}images/cinema-app/Prototype/5.png`, alt: 'Screen 5' },
+      { src: `${baseUrl}images/cinema-app/Prototype/3.png`, alt: 'Screen 3', isImage: true },
+      { src: `${baseUrl}images/cinema-app/Prototype/4.png`, alt: 'Screen 4', isImage: true },
+      { src: `${baseUrl}images/cinema-app/Prototype/5.png`, alt: 'Screen 5', isImage: true },
     ],
     // Row 3: 6, 7, 8, 9
     [
-      { src: `${baseUrl}images/cinema-app/Prototype/6.png`, alt: 'Screen 6' },
-      { src: `${baseUrl}images/cinema-app/Prototype/7.png`, alt: 'Screen 7' },
-      { src: `${baseUrl}images/cinema-app/Prototype/8.png`, alt: 'Screen 8' },
-      { src: `${baseUrl}images/cinema-app/Prototype/9.png`, alt: 'Screen 9' },
+      { src: `${baseUrl}images/cinema-app/Prototype/6.png`, alt: 'Screen 6', isImage: true },
+      { src: `${baseUrl}images/cinema-app/Prototype/7.png`, alt: 'Screen 7', isImage: true },
+      { src: `${baseUrl}images/cinema-app/Prototype/8.png`, alt: 'Screen 8', isImage: true },
+      { src: `${baseUrl}images/cinema-app/Prototype/9.png`, alt: 'Screen 9', isImage: true },
     ],
   ]
 
@@ -119,6 +146,26 @@ const PrototypesSection = ({ prototypesRef }) => {
       return 'Checkout & Payment Flow'
     }
   }
+
+  // SVG Arrow Component
+  const ArrowSVG = () => (
+    <svg 
+      width="100" 
+      height="200" 
+      viewBox="0 0 200 400" 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-auto h-auto"
+    >
+      <path 
+        d="M50 200 L150 200 M150 200 L130 180 M150 200 L130 220" 
+        stroke="#777777" 
+        strokeWidth="2" 
+        strokeLinecap="round" 
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
 
   return (
     <div ref={containerRef} className="w-full bg-black py-16 lg:py-24">
@@ -160,13 +207,19 @@ const PrototypesSection = ({ prototypesRef }) => {
                   <ChevronLeft className="w-6 h-6 text-white" />
                 </button>
 
-                {/* Image */}
+                {/* Image or Arrow */}
                 <div className="w-full max-w-[300px] mx-12">
-                  <img
-                    src={allImages[currentImageIndex].src}
-                    alt={allImages[currentImageIndex].alt}
-                    className="w-full h-auto object-contain rounded-lg shadow-lg"
-                  />
+                  {allImages[currentImageIndex].isImage ? (
+                    <img
+                      src={allImages[currentImageIndex].src}
+                      alt={allImages[currentImageIndex].alt}
+                      className="w-full h-auto object-contain rounded-lg shadow-lg"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-[400px]">
+                      <ArrowSVG />
+                    </div>
+                  )}
                 </div>
 
                 {/* Next Button */}
@@ -195,15 +248,21 @@ const PrototypesSection = ({ prototypesRef }) => {
           ) : (
             /* Desktop/Tablet: Flexible grid layout */
             <div className="w-full">
-              {/* Row 1: Centered with 6 images */}
+              {/* Row 1: Centered with 6 items (5 images + 1 arrow) */}
               <div className="flex justify-center gap-8 mb-6">
-                {prototypeRows[0].map((image, index) => (
+                {prototypeRows[0].map((item, index) => (
                   <div key={index} className="relative group w-[200px] flex-shrink-0">
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-auto object-contain hover:scale-105 transition-transform duration-500 rounded-lg shadow-lg"
-                    />
+                    {item.isImage ? (
+                      <img
+                        src={item.src}
+                        alt={item.alt}
+                        className="w-full h-auto object-contain hover:scale-105 transition-transform duration-500 rounded-lg shadow-lg"
+                      />
+                    ) : (
+                      <div className="flex items-center justify-center h-full">
+                        <ArrowSVG />
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -268,7 +327,7 @@ const PrototypesSection = ({ prototypesRef }) => {
           )}
 
           {/* Next Steps */}
-          <div className="mt-50 flex flex-col items-center">
+          <div ref={nextStepsRef} className="mt-50 flex flex-col items-center opacity-100">
             <h2 className="text-[50px] text-lato-bold font-bold text-center text-white mb-10">
               Next Steps
             </h2>
