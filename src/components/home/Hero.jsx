@@ -270,9 +270,9 @@ const Hero = () => {
             } ${showSubtext ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
           >
             {isMobile ? (
-              <>a combination that shaped how I understand space, structure, and the way people interact with their environment.</>
+              <>A combination that shaped how I understand space, structure, and the way people interact with their environment.</>
             ) : (
-              <>a combination that shaped how I understand space, structure,<br />and the way people interact with their environment.</>
+              <>A combination that shaped how I understand space, structure,<br />and the way people interact with their environment.</>
             )}
           </p>
         </div>
