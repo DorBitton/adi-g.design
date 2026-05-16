@@ -27,6 +27,15 @@ const Projects = () => {
       description: 'UI/UX redesign of a movie booking app, transforming a cluttered interface into a clean, modern experience. Features intuitive navigation, bold visual hierarchy, and a streamlined booking flow from browsing to seat selection.',
       image: `${baseUrl}images/projects/1.png`,
       link: '/cinema-app'
+    },
+    {
+      id: 2,
+      title: 'EverTale',
+      company: 'UX Design',
+      year: '26',
+      description: 'End-to-end UX design for an AI-powered children\'s storytelling app. From user research and personas through wireframes, information architecture, and high-fidelity iOS mockups.',
+      image: `${baseUrl}images/evertale/hero/hero.png`,
+      link: '/evertale'
     }
   ]
 
@@ -113,59 +122,67 @@ const Projects = () => {
                     {/* Text Content */}
                     <div className={isMobile ? 'space-y-4' : isTablet ? 'space-y-6' : 'space-y-8'}>
                       <p className={`font-light font-lato-light text-neutral-300 tracking-wider ${
-                        isMobile ? 'text-lg -translate-y-[1vh]' : 
-                        isTablet ? 'text-xl -translate-y-[2vh]' : 
+                        isMobile ? 'text-lg -translate-y-[1vh]' :
+                        isTablet ? 'text-xl -translate-y-[2vh]' :
                         'text-2xl -translate-y-[3vh]'
                       }`}>
                         Featured Project
                       </p>
                       <h2
                         className={`font-bold text-neutral-100 leading-tight ${
-                          isMobile ? 'text-[32px]' : 
-                          isTablet ? 'text-[40px]' : 
+                          isMobile ? 'text-[32px]' :
+                          isTablet ? 'text-[40px]' :
                           'text-[52px]'
                         }`}
                         style={{ fontFamily: 'Casta, serif' }}
                       >
-                        <span className="italic">Cinema Application</span>
+                        <span className="italic">{project.title}</span>
                       </h2>
                       <p className={`font-light font-lato-light text-neutral-300 mx-auto text-center leading-relaxed ${
-                        isMobile ? 'text-[16px] max-w-full' : 
-                        isTablet ? 'text-[18px] max-w-2xl' : 
+                        isMobile ? 'text-[16px] max-w-full' :
+                        isTablet ? 'text-[18px] max-w-2xl' :
                         'text-[20px] max-w-3xl'
                       }`}>
-                        UI/UX redesign of a movie booking app, transforming a cluttered interface
-                        into a clean, modern experience. Features intuitive navigation, bold visual
-                        hierarchy, and a streamlined booking flow from browsing to seat selection.
+                        {project.description}
                       </p>
                     </div>
 
                     {/* Images */}
-                    {isMobile ? (
-                      // Mobile: Single iPhone 16 Pro Image
-                      <div className="flex w-full justify-center items-center mt-4">
-                        <img
-                          src={`${baseUrl}images/cinema-app/Prototype/iPhone 16 Pro.png`}
-                          alt="iPhone 16 Pro - Cinema App"
-                          className="w-full h-auto rounded-lg object-contain"
-                        />
-                      </div>
-                    ) : (
-                      // Tablet/Desktop: 4 Images in a line
-                      <div className={`flex w-full justify-center items-center ${
-                        isTablet ? 'flex-row flex-wrap gap-3 max-w-3xl mt-6' : 
-                        'flex-row gap-4 max-w-4xl mt-8'
-                      }`}>
-                        {[1, 2, 3, 4].map((index) => (
+                    {project.id === 1 ? (
+                      isMobile ? (
+                        <div className="flex w-full justify-center items-center mt-4">
                           <img
-                            key={index}
-                            src={`${baseUrl}images/projects/CinemaApp/${index}.png`}
-                            alt={`Cinema App screenshot ${index}`}
-                            className={`max-w-full h-auto rounded-lg object-contain ${
-                              isTablet ? 'flex-1 min-w-[45%]' : 'flex-1'
-                            }`}
+                            src={`${baseUrl}images/cinema-app/Prototype/iPhone 16 Pro.png`}
+                            alt="iPhone 16 Pro - Cinema App"
+                            className="w-full h-auto rounded-lg object-contain"
                           />
-                        ))}
+                        </div>
+                      ) : (
+                        <div className={`flex w-full justify-center items-center ${
+                          isTablet ? 'flex-row flex-wrap gap-3 max-w-3xl mt-6' :
+                          'flex-row gap-4 max-w-4xl mt-8'
+                        }`}>
+                          {[1, 2, 3, 4].map((index) => (
+                            <img
+                              key={index}
+                              src={`${baseUrl}images/projects/CinemaApp/${index}.png`}
+                              alt={`Cinema App screenshot ${index}`}
+                              className={`max-w-full h-auto rounded-lg object-contain ${
+                                isTablet ? 'flex-1 min-w-[45%]' : 'flex-1'
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      )
+                    ) : (
+                      <div className={`flex w-full justify-center items-center mt-4 ${
+                        isMobile ? '' : 'mt-8'
+                      }`}>
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-auto rounded-2xl object-cover"
+                        />
                       </div>
                     )}
                   </div>

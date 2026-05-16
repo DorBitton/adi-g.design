@@ -1,48 +1,67 @@
+const insights = [
+  {
+    quote: '"Add a hobby or something personal"',
+    decision: 'Added free-text input for deeper personalization',
+  },
+  {
+    quote: '"More story worlds = more control!"',
+    decision: 'Expanded story world options',
+  },
+  {
+    quote: '"Let us skip questions"',
+    decision: 'Introduced optional fields',
+  },
+  {
+    quote: '"Not comfortable uploading photos"',
+    decision: 'Added character alternative + privacy messaging',
+  },
+]
+
 const UserTesting = () => (
-  <section className="w-full text-white py-20" style={{ backgroundColor: '#1E1C1C' }}>
-    <div className="w-full max-w-7xl mx-auto px-6 lg:px-16">
-      <h2
-        className="text-[36px] md:text-[48px] leading-tight mb-6"
-        style={{ fontFamily: "'Anton SC', sans-serif", color: '#D3B0D5' }}
-      >
-        User Testing
-      </h2>
+  <section className="w-full text-white py-20 bg-black">
+    <div className="w-full max-w-[2028px] mx-auto px-6 lg:px-16">
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-        <div>
-          <p className="font-lato-light font-light text-[18px] md:text-[22px] text-neutral-300 leading-relaxed mb-6">
-            Five parent-child pairs tested an interactive Figma prototype across two rounds.
-            Sessions focused on task completion, navigation clarity, and emotional response.
-          </p>
-          <p className="font-lato-light font-light text-[18px] md:text-[22px] text-neutral-300 leading-relaxed">
-            Key findings shaped the final design: children needed larger tap targets during story
-            creation, parents wanted clearer progress indicators, and both groups responded strongly
-            to the animated story cover reveal at the end of the flow.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 gap-4">
-          {[
-            { stat: '5/5', label: 'Users completed story creation without guidance' },
-            { stat: '2×', label: 'Rounds of testing — wireframe then hi-fi' },
-            { stat: '3', label: 'Key changes made based on test feedback' },
-          ].map(({ stat, label }) => (
-            <div
-              key={stat}
-              className="flex items-center gap-5 rounded-2xl px-6 py-5"
-              style={{ backgroundColor: '#453147' }}
-            >
-              <span
-                className="text-[40px] leading-none flex-shrink-0"
-                style={{ fontFamily: "'Anton SC', sans-serif", color: '#D3B0D5' }}
-              >
-                {stat}
-              </span>
-              <p className="font-lato-light font-light text-neutral-200 text-[16px] leading-snug">{label}</p>
-            </div>
-          ))}
-        </div>
+      {/* Heading with yellow dot */}
+      <div className="flex items-center gap-3 mb-6">
+        <span style={{ fontSize: 20 }}>💡</span>
+        <h2
+          className="text-[50px]"
+          style={{ color: '#fff', fontFamily: "'Anton SC', sans-serif" }}
+        >
+          User Testing &amp; Insights
+        </h2>
       </div>
+
+      <p
+        className="font-lato-light font-light text-[20px] leading-relaxed mb-10 max-w-4xl"
+        style={{ color: '#d4d4d4' }}
+      >
+        I conducted initial testing with parents and professionals working with children
+        to evaluate clarity, comfort, and usability of the story creation flow. The feedback
+        revealed key tensions between personalization, flexibility, and simplicity — directly
+        shaping multiple iterations of the experience.
+      </p>
+
+      <p
+        className="mb-6"
+        style={{ fontFamily: 'Lato, sans-serif', fontSize: 24, fontWeight: 700, color: '#fff' }}
+      >
+        User Insights → Design Decisions
+      </p>
+
+      <ul className="flex flex-col" style={{ gap: 20 }}>
+        {insights.map(({ quote, decision }) => (
+          <li key={quote} style={{ listStyle: 'disc', marginLeft: 28 }}>
+            <p style={{ fontFamily: 'Lato-light', fontSize: 20, lineHeight: '1.625', color: '#d4d4d4' }}>
+              {quote}
+            </p>
+            <p style={{ fontFamily: 'Lato-light', fontSize: 20, lineHeight: '1.625', color: '#a78baa' }}>
+              → {decision}
+            </p>
+          </li>
+        ))}
+      </ul>
+
     </div>
   </section>
 )

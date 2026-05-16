@@ -15,7 +15,7 @@ const EverTaleDetail = () => {
   }, [])
 
   return (
-    <main className="w-full min-h-screen" style={{ backgroundColor: '#1E1C1C' }}>
+    <main className="w-full min-h-screen bg-black">
       <Hero />
       <OpportunityProblem />
       <MeetUsers />

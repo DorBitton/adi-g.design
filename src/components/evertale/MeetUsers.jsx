@@ -1,69 +1,91 @@
 const BASE = import.meta.env.BASE_URL
 
-const PersonaCard = ({ name, age, role, quote, traits, image, initials }) => (
-  <div className="rounded-3xl p-8 md:p-10 flex flex-col gap-6" style={{ backgroundColor: '#453147' }}>
-    {/* Avatar */}
-    <div className="flex items-center gap-5">
-      {image ? (
+const personas = [
+  {
+    type: 'Child Persona',
+    name: 'Emma',
+    age: '6',
+    title: 'The Curious Dreamer',
+    image: 'emma.png',
+    about: 'Emma loves magical stories and imaginative worlds. She enjoys visually rich experiences and engaging moments she can share with a parent.',
+    frustrations: 'Loses interest with too much text or complex steps. Gets disengaged when the experience feels generic or not personal.',
+    solution: 'A simple, visual experience that makes Emma feel part of the story — keeping her engaged, excited, and immersed.',
+  },
+  {
+    type: 'Parent Persona',
+    name: 'Daniel',
+    age: '35',
+    title: 'The Thoughtful Dad',
+    image: 'daniel.png',
+    about: 'Daniel looks for meaningful ways to spend quality time with his child. He prefers simple, intuitive experiences that are easy to start and enjoyable to use together.',
+    frustrations: 'Concerned about privacy and data safety. Gets frustrated with long or unclear processes before reaching the value.',
+    solution: 'A guided, low-friction flow with clear value and reassuring messaging, enabling a smooth and enjoyable shared experience.',
+  },
+]
+
+
+const s = { fontSize: 20, lineHeight: '1.625', color: '#fff', wordWrap: 'break-word' }
+const sHeader = { fontSize: 24, lineHeight: 'normal', color: '#fff', wordWrap: 'break-word' }
+
+const PersonaCard = ({ type, name, age, title, image, about, frustrations, solution }) => (
+  <div
+    className="w-full flex flex-col lg:flex-row lg:justify-center lg:items-center rounded-[30px] py-10 px-8 gap-10 lg:gap-[100px]"
+    style={{ backgroundColor: '#453147' }}
+  >
+
+    {/* Col 1 — Photo + identity, 348px fixed */}
+    <div className="flex flex-col items-start gap-[41px] lg:w-[348px] flex-shrink-0">
+
+      {/* Lavender circle + character image */}
+      <div className="relative flex-shrink-0" style={{ width: 250, height: 250, overflow: 'hidden', borderRadius: 9999 }}>
+        <div style={{ width: 250, height: 250, position: 'absolute', top: 0, left: 0, background: '#D3B0D5', borderRadius: 9999 }} />
         <img
-          src={image}
+          src={`${BASE}images/evertale/hero/personas/${image}`}
           alt={name}
-          className="w-20 h-20 rounded-full object-cover object-top border-2 border-[#D3B0D5]"
+          style={{ width: 200, height: 200, position: 'absolute', left: 25, top: 55, borderRadius: 9999, objectFit: 'cover' }}
         />
-      ) : (
-        <div className="w-20 h-20 rounded-full flex items-center justify-center border-2 border-[#D3B0D5] bg-neutral-800 text-[#D3B0D5] text-3xl font-lato-bold">
-          {initials}
-        </div>
-      )}
+      </div>
+
+      {/* Identity text — one line per field */}
       <div>
-        <p className="font-lato-bold text-white text-2xl">{name}</p>
-        <p className="font-lato-light text-neutral-400 text-base">{age} · {role}</p>
+        <div style={{ ...s, fontFamily: 'Lato-bold' }}>{type}</div>
+        <div style={s}><span style={{ fontFamily: 'Lato-bold' }}>Name: </span><span style={{ fontFamily: 'Lato-light' }}>{name}</span></div>
+        <div style={s}><span style={{ fontFamily: 'Lato-bold' }}>Age: </span><span style={{ fontFamily: 'Lato-light' }}>{age}</span></div>
+        <div style={s}><span style={{ fontFamily: 'Lato-bold' }}>Title: </span><span style={{ fontFamily: 'Lato-light' }}>{title}</span></div>
       </div>
     </div>
 
-    {/* Quote */}
-    <blockquote className="font-lato-light font-light text-[18px] text-neutral-200 leading-relaxed border-l-2 border-[#D3B0D5] pl-4 italic">
-      "{quote}"
-    </blockquote>
-
-    {/* Traits */}
-    <ul className="flex flex-wrap gap-2">
-      {traits.map((t) => (
-        <li key={t} className="px-3 py-1 rounded-full bg-black/30 text-neutral-300 text-sm font-lato border border-neutral-700">
-          {t}
-        </li>
+    {/* Cols 2-4 — About / Frustrations / Solution */}
+    <div className="flex flex-col lg:flex-row items-start gap-10 lg:gap-[150px]">
+      {[
+        { header: 'About', body: about },
+        { header: 'Frustrations', body: frustrations },
+        { header: 'Solution', body: solution },
+      ].map(({ header, body }) => (
+        <div key={header} className="flex flex-col lg:w-[340px]" style={{ gap: 20 }}>
+          <div style={{ ...sHeader, fontFamily: 'Lato-bold', fontWeight: 700 }}>{header}</div>
+          <div style={{ ...s, fontFamily: 'Lato-light' }}>{body}</div>
+        </div>
       ))}
-    </ul>
+    </div>
+
   </div>
 )
 
 const MeetUsers = () => (
-  <section className="w-full text-white py-20" style={{ backgroundColor: '#1E1C1C' }}>
-    <div className="w-full max-w-7xl mx-auto px-6 lg:px-16">
+  <section className="w-full text-white py-20 bg-black">
+    <div className="w-full max-w-[2028px] mx-auto px-6 lg:px-16">
       <h2
-        className="text-[36px] md:text-[48px] leading-tight mb-12"
-        style={{ fontFamily: "'Anton SC', sans-serif", color: '#D3B0D5' }}
+        className="text-[50px] mb-12"
+        style={{ color: '#D3B0D5', fontFamily: "'Anton SC', sans-serif" }}
       >
         Meet the Users
       </h2>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <PersonaCard
-          name="Emma"
-          age="8 years old"
-          role="The Child"
-          quote="I want a story about ME going on an adventure with my dog Biscuit!"
-          traits={['Imaginative', 'Loves animals', 'Short attention span', 'Tablet native']}
-          image={`${BASE}images/evertale/personas/emma.png`}
-        />
-        <PersonaCard
-          name="Daniel"
-          age="36 years old"
-          role="The Parent"
-          quote="I want bedtime to be magical, but I run out of ideas after a long day."
-          traits={['Time-pressed', 'Tech-comfortable', 'Values creativity', 'Reads nightly']}
-          initials="D"
-        />
+      <div className="flex flex-col gap-8">
+        {personas.map((p) => (
+          <PersonaCard key={p.name} {...p} />
+        ))}
       </div>
     </div>
   </section>
