@@ -8,6 +8,7 @@ import Wireframes from './Wireframes'
 import DesignChallenge from './DesignChallenge'
 import UserTesting from './UserTesting'
 import HighFiMockups from './HighFiMockups'
+import Contact from '../home/Contact'
 
 const EverTaleDetail = () => {
   useEffect(() => {
@@ -25,6 +26,8 @@ const EverTaleDetail = () => {
       <DesignChallenge />
       <UserTesting />
       <HighFiMockups />
+      <hr className="border-t border-neutral-800 mx-6 lg:mx-16" />
+      <Contact />
     </main>
   )
 }

@@ -40,59 +40,57 @@ const designBullets = [
   { label: 'RTL support:', body: 'The entire layout mirrors correctly for Hebrew, including reading direction, button placement, and text alignment.' },
 ]
 
-const txt = (weight) => ({
-  fontFamily: weight === 'bold' ? 'Lato-bold' : 'Lato-light',
-  fontSize: 20,
-  lineHeight: '1.625',
-  color: '#fff',
-})
+const bodyStyle = 'text-[20px] text-neutral-300 font-lato-light leading-relaxed'
+const bodyInline = { fontFamily: 'Lato-light, sans-serif' }
 
 const ResearchDirection = () => (
-  <section className="w-full text-white py-20 bg-black pt-55">
+  <section className="w-full text-white py-20 bg-black pt-40">
     <div className="w-full max-w-[2028px] mx-auto px-6 lg:px-16">
 
       {/* Heading */}
       <h2
         className="text-[50px] mb-8"
-        style={{ color: '#D3B0D5', fontFamily: "'Anton SC', sans-serif" }}
+        style={{ color: '#D3B0D5', fontFamily: "'Anton SC', sans-serif", letterSpacing: '0.02em' }}
       >
-        Visual &amp; UX Direction Research
+        Visual & UX Direction Research
       </h2>
 
       {/* Intro paragraphs */}
       <div className="mb-16" style={{ maxWidth: 1200 }}>
-        <p style={{ ...txt('bold'), marginBottom: 0 }}>
-          The design direction for EverTale was shaped by the need to balance two distinct audiences: parents and children.
+        <p className="text-neutral-300 text-[20px] font-lato-light mb-2 leading-relaxed" style={{ fontFamily: 'Lato-light, sans-serif' }}>
+          <span className="font-lato font-bold text-white">The design direction for EverTale was shaped by the need to balance two distinct audiences: parents and children.</span>
         </p>
-        <p style={txt('light')}>
+        <p className="text-[20px] text-neutral-300 font-lato-light leading-relaxed" style={{ fontFamily: 'Lato-light, sans-serif' }}>
           Rather than following traditional, highly saturated children's app aesthetics, the goal was to create a calm, cinematic experience that feels comfortable for adults, while still delivering rich, engaging storytelling for kids.
         </p>
-        <p style={txt('light')}>
+        <p className="text-[20px] text-neutral-300 font-lato-light leading-relaxed" style={{ fontFamily: 'Lato-light, sans-serif' }}>
           This approach led to a dual-layer experience: a minimal, low-stimulation interface for navigation and setup, and a vibrant, character-driven visual world within the stories themselves.
         </p>
       </div>
 
       {/* Reference cards — 4 columns */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20 items-stretch">
         {refCards.map(({ source, img, note }) => (
           <div key={source} className="rounded-2xl overflow-hidden flex flex-col" style={{ backgroundColor: '#2a1f2e' }}>
-            <div className="overflow-hidden">
-              <img
-                src={`${BASE}images/evertale/Visual & UX Direction Research/research/${img}`}
-                alt={source}
-                className="w-full h-auto object-cover"
-              />
+            <div className="p-4 flex-shrink-0 h-52">
+              <div className="w-full h-full rounded-xl overflow-hidden">
+                <img
+                  src={`${BASE}images/evertale/Visual & UX Direction Research/research/${img}`}
+                  alt={source}
+                  className="w-full h-full"
+                />
+              </div>
             </div>
-            <div className="p-5 flex flex-col gap-2">
-              <p style={{ fontFamily: 'Lato-light', fontSize: 14, color: '#a78baa' }}>Source: {source}</p>
-              <p style={{ fontFamily: 'Lato-light', fontSize: 18, lineHeight: '28px', color: '#d4d4d4' }}>{note}</p>
+            <div className="p-5 flex flex-col gap-2 flex-1">
+              <p className="text-[14px] font-lato-light leading-relaxed" style={{ fontFamily: 'Lato-light, sans-serif', color: '#a78baa' }}>Source: {source}</p>
+              <p className={bodyStyle} style={bodyInline}>{note}</p>
             </div>
           </div>
         ))}
       </div>
 
       {/* Choosing the Right Colors */}
-      <h3 className="mb-8" style={{ fontFamily: 'Lato, sans-serif', fontSize: 24, fontWeight: 700, color: '#fff' }}>
+      <h3 className="mb-8" style={{ fontFamily: 'Lato-bold, sans-serif', fontWeight: 700, fontSize: 24, color: '#fff' }}>
         Choosing the Right Colors
       </h3>
 
@@ -131,25 +129,25 @@ const ResearchDirection = () => (
                 src={`${BASE}images/evertale/Visual & UX Direction Research/Choosing the Right Colors/${img}`}
                 alt=""
                 aria-hidden="true"
-                className="flex-shrink-0 w-6 h-6 object-contain"
+                className="flex-shrink-0 w-6 h-6 object-contain rounded"
               />
             )}
-            <p style={txt('light')}>{text}</p>
+            <p className={bodyStyle} style={bodyInline}>{text}</p>
           </div>
         ))}
       </div>
 
       {/* Visual Design Direction */}
-      <h3 className="mb-6" style={{ fontFamily: 'Lato, sans-serif', fontSize: 24, fontWeight: 700, color: '#fff' }}>
+      <h3 className="mb-6" style={{ fontFamily: 'Lato-bold, sans-serif', fontWeight: 700, fontSize: 24, color: '#fff' }}>
         Visual Design Direction
       </h3>
-      <p className="mb-6" style={txt('light')}>
+      <p className={`mb-6 ${bodyStyle}`} style={bodyInline}>
         The app generates Pixar-inspired 3D illustrated story pages, so the UI needed to feel like a frame worthy of that content — not compete with it.
       </p>
       <ul className="flex flex-col" style={{ gap: 4 }}>
         {designBullets.map(({ label, body }) => (
-          <li key={label} style={{ ...txt('light'), listStyle: 'disc', marginLeft: 32 }}>
-            <span style={{ fontFamily: 'Lato-bold' }}>{label}</span> {body}
+          <li key={label} className={bodyStyle} style={{ ...bodyInline, listStyle: 'disc', marginLeft: 32 }}>
+            <span className="font-bold text-white" style={{ fontFamily: 'Lato-bold, sans-serif' }}>{label}</span> {body}
           </li>
         ))}
       </ul>

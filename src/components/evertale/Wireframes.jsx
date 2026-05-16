@@ -2,7 +2,7 @@ const BASE = import.meta.env.BASE_URL
 
 const rows = [
   [
-    { file: '01-splash.png', label: 'Splash' },
+    { file: '01-splash.png', label: 'Landing' },
     { file: '02-home.png',   label: 'Home' },
     { file: '03-login.png',  label: 'Sign In' },
   ],
@@ -19,39 +19,36 @@ const rows = [
 ]
 
 const Dot = () => (
-  <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 24, alignSelf: 'center' }}>
-    <div style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: '#5c5c5c' }} />
+  <div className="flex-shrink-0 flex items-center justify-center px-10" style={{ alignSelf: 'center' }}>
+    <div style={{ width: 9, height: 9, borderRadius: '50%', backgroundColor: '#D3B0D5' }} />
   </div>
 )
 
 const ScreenCard = ({ file, label }) => (
   <div className="flex flex-col gap-3" style={{ flex: 1, minWidth: 0 }}>
-    <div className="rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-900">
+    <div className="rounded-lg overflow-hidden border border-neutral-800 bg-neutral-900">
       <img
         src={`${BASE}images/evertale/wireframes/${file}`}
         alt={label}
         className="w-full h-auto block"
       />
     </div>
-    <p className="text-neutral-500 text-sm font-lato text-center">{label}</p>
+    <p className="text-[16px] font-lato-light leading-relaxed text-center" style={{ fontFamily: 'Lato-light, sans-serif', color: '#D3B0D5' }}>{label}</p>
   </div>
 )
 
 const Wireframes = () => (
-  <section className="w-full text-white py-20 bg-black">
+  <section className="w-full text-white py-20 bg-black pt-55">
     <div className="w-full max-w-[2028px] mx-auto px-6 lg:px-16">
 
       <h2
-        className="text-[50px] leading-tight mb-4"
-        style={{ color: '#D3B0D5', fontFamily: "'Anton SC', sans-serif" }}
+        className="text-[50px] leading-tight mb-16"
+        style={{ color: '#D3B0D5', fontFamily: "'Anton SC', sans-serif" ,  letterSpacing: '0.02em' }}
       >
         UX - Wireframes
       </h2>
-      <p className="font-lato-light font-light text-[20px] text-neutral-300 max-w-3xl mb-12 leading-relaxed">
-        Low-fidelity explorations focused on layout, flow, and hierarchy before any visual styling.
-      </p>
 
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8 max-w-[70%]">
         {rows.map((row, ri) => (
           <div key={ri} className="flex items-start">
             {row.map((screen, i) => (
