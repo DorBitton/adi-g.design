@@ -47,7 +47,7 @@ const Hero = () => (
     </div>
 
     {/* ── What is EverTale + Phone mockup ─────────────────── */}
-    <div className="w-full max-w-[2028px] mx-auto px-6 lg:px-16 pt-24 pb-20">
+    <div className="w-full max-w-[2028px] mx-auto px-6 lg:px-16 pt-55">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
 
         {/* Left — What is EverTale? */}
@@ -78,11 +78,11 @@ const Hero = () => (
         </div>
 
         {/* Right — Transparent phone mockup */}
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center pb-[-10%]">
           <img
             src={`${BASE}images/evertale/hero/Hero/hero.png`}
             alt="EverTale app mockup"
-            className="w-full h-auto block"
+            className="w-full h-auto block scale-120"
           />
         </div>
 

@@ -48,7 +48,7 @@ const txt = (weight) => ({
 })
 
 const ResearchDirection = () => (
-  <section className="w-full text-white py-20 bg-black">
+  <section className="w-full text-white py-20 bg-black pt-55">
     <div className="w-full max-w-[2028px] mx-auto px-6 lg:px-16">
 
       {/* Heading */}

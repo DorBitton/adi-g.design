@@ -24,17 +24,18 @@ const personas = [
 ]
 
 
+const tStyle = 'text-neutral-300 text-[20px] font-lato-light mb-2 leading-relaxed '
+const tInline = { fontFamily: 'Lato-light, sans-serif' }
 const s = { fontSize: 20, lineHeight: '1.625', color: '#fff', wordWrap: 'break-word' }
-const sHeader = { fontSize: 24, lineHeight: 'normal', color: '#fff', wordWrap: 'break-word' }
 
 const PersonaCard = ({ type, name, age, title, image, about, frustrations, solution }) => (
   <div
-    className="w-full flex flex-col lg:flex-row lg:justify-center lg:items-center rounded-[30px] py-10 px-8 gap-10 lg:gap-[100px]"
+    className="w-full flex flex-col xl:flex-row xl:items-center rounded-[30px]  py-10 px-8 gap-10 xl:gap-12"
     style={{ backgroundColor: '#453147' }}
   >
 
-    {/* Col 1 — Photo + identity, 348px fixed */}
-    <div className="flex flex-col items-start gap-[41px] lg:w-[348px] flex-shrink-0">
+    {/* Col 1 — Photo + identity */}
+    <div className="flex flex-col items-start gap-[41px] xl:w-[280px] flex-shrink-0 ">
 
       {/* Lavender circle + character image */}
       <div className="relative flex-shrink-0" style={{ width: 250, height: 250, overflow: 'hidden', borderRadius: 9999 }}>
@@ -48,23 +49,23 @@ const PersonaCard = ({ type, name, age, title, image, about, frustrations, solut
 
       {/* Identity text — one line per field */}
       <div>
-        <div style={{ ...s, fontFamily: 'Lato-bold' }}>{type}</div>
-        <div style={s}><span style={{ fontFamily: 'Lato-bold' }}>Name: </span><span style={{ fontFamily: 'Lato-light' }}>{name}</span></div>
-        <div style={s}><span style={{ fontFamily: 'Lato-bold' }}>Age: </span><span style={{ fontFamily: 'Lato-light' }}>{age}</span></div>
-        <div style={s}><span style={{ fontFamily: 'Lato-bold' }}>Title: </span><span style={{ fontFamily: 'Lato-light' }}>{title}</span></div>
+        <p className={tStyle} style={tInline}><span className="font-bold text-white">{type}</span></p>
+        <p className={tStyle} style={tInline}><span className="font-bold text-white">Name:</span> {name}</p>
+        <p className={tStyle} style={tInline}><span className="font-bold text-white">Age:</span> {age}</p>
+        <p className={tStyle} style={tInline}><span className="font-bold text-white">Title:</span> {title}</p>
       </div>
     </div>
 
     {/* Cols 2-4 — About / Frustrations / Solution */}
-    <div className="flex flex-col lg:flex-row items-start gap-10 lg:gap-[150px]">
+    <div className="flex flex-col md:flex-row items-start gap-8 flex-1 min-w-0">
       {[
         { header: 'About', body: about },
         { header: 'Frustrations', body: frustrations },
         { header: 'Solution', body: solution },
       ].map(({ header, body }) => (
-        <div key={header} className="flex flex-col lg:w-[340px]" style={{ gap: 20 }}>
-          <div style={{ ...sHeader, fontFamily: 'Lato-bold', fontWeight: 700 }}>{header}</div>
-          <div style={{ ...s, fontFamily: 'Lato-light' }}>{body}</div>
+        <div key={header} className="flex flex-col flex-1 min-w-0 gap-5">
+          <p className={tStyle} style={tInline}><span className="font-bold text-white">{header}</span></p>
+          <p className="text-[20px] text-neutral-300 mb-8 leading-relaxed" style={{ fontFamily: 'Lato-light, sans-serif' }}>{body}</p>
         </div>
       ))}
     </div>
@@ -73,7 +74,7 @@ const PersonaCard = ({ type, name, age, title, image, about, frustrations, solut
 )
 
 const MeetUsers = () => (
-  <section className="w-full text-white py-20 bg-black">
+  <section className="w-full text-white py-20 bg-black pt-55">
     <div className="w-full max-w-[2028px] mx-auto px-6 lg:px-16">
       <h2
         className="text-[50px] mb-12"
