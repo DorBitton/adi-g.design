@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
 import Home from './components/home'
 import CinemaAppDetail from './components/cinema-app'
+import EverTaleDetail from './components/evertale'
 import ErrorBoundary from './components/common/ErrorBoundary'
 import './App.css'
 
@@ -60,6 +61,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cinema-app" element={<CinemaAppDetail />} />
+          <Route path="/evertale" element={<EverTaleDetail />} />
         </Routes>
       </ErrorBoundary>
     </HashRouter>
