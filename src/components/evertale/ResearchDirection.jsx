@@ -96,18 +96,18 @@ const ResearchDirection = () => (
 
       {/* Color swatch — 3 overlapping cards, Figma geometry at 100% scale */}
       {/* Total: 631 × 400. Cards: 300×400 at X positions 0, 174, 331 */}
-      <div className="relative mb-16" style={{ width: 631, height: 400 }}>
-        {/* Card 1: dark blue — top z, all-corner radius 20. Label at its own bottom-left */}
-        <div style={{ position: 'absolute', left: 0, top: 0, width: 300, height: 400, zIndex: 3, backgroundColor: '#151328', borderRadius: 20 }}>
-          <span style={{ position: 'absolute', bottom: 24, left: 24, fontFamily: 'Lato-bold', fontSize: 20, color: '#fff' }}>151328</span>
+      <div className="relative mb-16" style={{ width: 456, height: 289 }}>
+        {/* Card 1: dark blue — top z */}
+        <div style={{ position: 'absolute', left: 0, top: 0, width: 217, height: 289, zIndex: 3, backgroundColor: '#151328', borderRadius: 14 }}>
+          <span style={{ position: 'absolute', bottom: 17, left: 17, fontFamily: 'Lato-bold', fontSize: 15, color: '#fff' }}>151328</span>
         </div>
-        {/* Card 2: purple — middle z. Visible area starts at 300-174=126px in, so label left: 126+24=150 */}
-        <div style={{ position: 'absolute', left: 174, top: 0, width: 300, height: 400, zIndex: 2, backgroundColor: '#7F5086', borderRadius: '0 20px 20px 0' }}>
-          <span style={{ position: 'absolute', bottom: 24, left: 150, fontFamily: 'Lato-bold', fontSize: 20, color: '#fff' }}>7F5086</span>
+        {/* Card 2: purple — middle z */}
+        <div style={{ position: 'absolute', left: 126, top: 0, width: 217, height: 289, zIndex: 2, backgroundColor: '#7F5086', borderRadius: '0 14px 14px 0' }}>
+          <span style={{ position: 'absolute', bottom: 17, left: 109, fontFamily: 'Lato-bold', fontSize: 15, color: '#fff' }}>7F5086</span>
         </div>
-        {/* Card 3: white — bottom z, right corners rounded. Visible area starts at 474-331=143px in, so label left: 143+24=167 */}
-        <div style={{ position: 'absolute', left: 331, top: 0, width: 300, height: 400, zIndex: 1, backgroundColor: '#FFFFFF', borderRadius: '0 20px 20px 0' }}>
-          <span style={{ position: 'absolute', bottom: 24, left: 167, fontFamily: 'Lato-bold', fontSize: 20, color: '#000' }}>FFFFFF</span>
+        {/* Card 3: white — bottom z */}
+        <div style={{ position: 'absolute', left: 239, top: 0, width: 217, height: 289, zIndex: 1, backgroundColor: '#FFFFFF', borderRadius: '0 14px 14px 0' }}>
+          <span style={{ position: 'absolute', bottom: 17, left: 121, fontFamily: 'Lato-bold', fontSize: 15, color: '#000' }}>FFFFFF</span>
         </div>
       </div>
 

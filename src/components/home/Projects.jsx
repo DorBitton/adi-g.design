@@ -20,6 +20,15 @@ const Projects = () => {
   const baseUrl = import.meta.env.BASE_URL
   const projects = [
     {
+      id: 2,
+      title: 'EverTale',
+      company: 'UX Design',
+      year: '26',
+      description: 'Full-cycle UX/UI design for an AI-powered storybook app where children become the heroes of their own personalized, illustrated, and narrated stories. Designed with and for both parents and children - from research, personas, and wireframes through to a bilingual, production-ready web app.',
+      image: `${baseUrl}images/evertale/hero/hero.png`,
+      link: '/evertale'
+    },
+    {
       id: 1,
       title: 'Cinema Application',
       company: 'UI/UX Design',
@@ -28,15 +37,6 @@ const Projects = () => {
       image: `${baseUrl}images/projects/1.png`,
       link: '/cinema-app'
     },
-    {
-      id: 2,
-      title: 'EverTale',
-      company: 'UX Design',
-      year: '26',
-      description: 'End-to-end UX design for an AI-powered children\'s storytelling app. From user research and personas through wireframes, information architecture, and high-fidelity iOS mockups.',
-      image: `${baseUrl}images/evertale/hero/hero.png`,
-      link: '/evertale'
-    }
   ]
 
   useEffect(() => {
@@ -158,32 +158,38 @@ const Projects = () => {
                           />
                         </div>
                       ) : (
-                        <div className={`flex w-full justify-center items-center ${
-                          isTablet ? 'flex-row flex-wrap gap-3 max-w-3xl mt-6' :
-                          'flex-row gap-4 max-w-4xl mt-8'
-                        }`}>
+                        <div className="flex flex-row w-full items-center gap-4 mt-8">
                           {[1, 2, 3, 4].map((index) => (
                             <img
                               key={index}
                               src={`${baseUrl}images/projects/CinemaApp/${index}.png`}
                               alt={`Cinema App screenshot ${index}`}
-                              className={`max-w-full h-auto rounded-lg object-contain ${
-                                isTablet ? 'flex-1 min-w-[45%]' : 'flex-1'
-                              }`}
+                              className="flex-1 min-w-0 h-auto rounded-lg object-contain"
                             />
                           ))}
                         </div>
                       )
                     ) : (
-                      <div className={`flex w-full justify-center items-center mt-4 ${
-                        isMobile ? '' : 'mt-8'
-                      }`}>
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-auto rounded-2xl object-cover"
-                        />
-                      </div>
+                      isMobile ? (
+                        <div className="flex w-full justify-center items-center mt-4">
+                          <img
+                            src={`${baseUrl}images/projects/evertale/1.png`}
+                            alt="EverTale screenshot"
+                            className="w-full h-auto rounded-lg object-contain"
+                          />
+                        </div>
+                      ) : (
+                        <div className="flex flex-row w-full items-center gap-4 mt-8">
+                          {[1, 2, 3, 4].map((index) => (
+                            <img
+                              key={index}
+                              src={`${baseUrl}images/projects/evertale/${index}.png`}
+                              alt={`EverTale screenshot ${index}`}
+                              className="flex-1 min-w-0 h-auto rounded-lg object-contain"
+                            />
+                          ))}
+                        </div>
+                      )
                     )}
                   </div>
 
